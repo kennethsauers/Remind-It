@@ -12,13 +12,13 @@ and it will mark as complete once user goes to location.
 
 
 ## Authors and acknowledgment
-Kenneth Sauers - Project Manager & Database
-Kyle Reid - Front-end
-Christopher Dowlatram - Front-end
-Misty Au - API
-Jose Luis - Database
-Mykola Maslych - Database
-Jorge Nunez - Javascript/API
+Kenneth Sauers - Project Manager & Database  
+Kyle Reid - Front-end  
+Christopher Dowlatram - Front-end  
+Misty Au - API  
+Jose Luis - Database  
+Mykola Maslych - Database  
+Jorge Nunez - Javascript/API  
 
 ## Contributing
 For Major changes, PLease open an issue first to discuss what 

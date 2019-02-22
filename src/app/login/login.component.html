@@ -1,0 +1,38 @@
+<link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://bootswatch.com/4/solar/_bootswatch.scss"></script>
+<script src="https://bootswatch.com/4/solar/_variables.scss"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://bootswatch.com/4/solar/bootstrap.css">
+<!--DONT TOUCH ANY CODE ABOVE, its required for the style/design to run smoothly-->
+
+<!--Entire login container-->
+<div class="container">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<a routerLink="/register" class="float-right btn btn-outline-primary">Sign up</a>
+	<h4 class="card-title mb-4 mt-1">Sign in</h4>
+	<p>
+		<a routerLink="https://twitter.com/" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+		<a routerLink="https://www.facebook.com/" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+	</p>
+	<hr>
+	<form>
+    <div class="form-group">
+        <input name="" class="form-control" placeholder="Email or login" type="email">
+    </div> <!-- form-group// -->
+    <div class="form-group">
+        <input class="form-control" placeholder="******" type="password">
+    </div> <!-- form-group// -->                                      
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" routerLink="/userpage"> Login  </button>
+            </div> <!-- form-group// -->
+        </div>
+        <div class="col-md-6 text-right">
+            <a class="small" href="#">Forgot password?</a>
+        </div>                                            
+    </div> <!-- .row// -->                                                                  
+</form>
+</article>
+</div> <!-- card.// -->

@@ -1,3 +1,16 @@
+/*
+ * Authentication Router
+ * =====================
+ *
+ * This script defines the backend auth routes and
+ * their associated behaviors. This is responsible
+ * for determining what does what, and where.
+ * If app.js is the backbone, think of this as the
+ * cardiovascular system.
+ *
+ * Authors: Jose Luis, Jorge B. Nunez
+ */
+
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
@@ -6,7 +19,7 @@ const config = require('../config/database');
 const User = require('../models/user');
 
 // Register user
-router.post('/register', (req, res, next) => {
+router.post('/reg', (req, res, next) => {
   let newUser = new User({
     username: req.body.username,
     password: req.body.password,
@@ -42,7 +55,7 @@ router.post('/register', (req, res, next) => {
 });
 
 // Authenticate
-router.post('/authenticate', (req, res, next) => {
+router.post('/auth', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 

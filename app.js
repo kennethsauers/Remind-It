@@ -1,7 +1,7 @@
 /*
  * Main Backend Script
  * ===================
- * 
+ *
  * This script serves as the "main" script file
  * for initiating the Express backend and its
  * components. Think of this as the spinal cord
@@ -21,7 +21,7 @@
 //   Passport provides web token functionality.
 //   Mongoose simplifies database interactions.
 //   Config defines the database doc format.
-//   Users defines API routes.
+//   Users defines backend routes.
 const express    = require('express');
 const https      = require('https');
 const fs         = require('fs');
@@ -75,4 +75,3 @@ https.createServer({
 .listen(port, () => {
   console.log("HTTPS server started on port " + port);
 });
-

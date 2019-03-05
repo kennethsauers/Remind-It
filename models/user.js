@@ -11,8 +11,7 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-  contacts: [ContactSchema]
+  }
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);

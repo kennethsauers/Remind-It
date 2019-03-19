@@ -11,6 +11,12 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  accountCreationDate: {
+    type: Number
+  },
+  birthday: {
+    type: Number
   }
 });
 
@@ -39,7 +45,7 @@ module.exports.addUser = function(newUser, callback) {
   });
 }
 
-// Compare candidatePassword with passowrd
+// Compare candidatePassword with password
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if (err) throw err;
@@ -47,7 +53,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
   });
 }
 
-// Add contact newContact to user by id
+/* // Add contact newContact to user by id
 module.exports.addContact = function(id, newContact, callback) {
   User.findByIdAndUpdate(id,
      { $push: { "contacts": newContact } },
@@ -58,3 +64,4 @@ module.exports.addContact = function(id, newContact, callback) {
      }
   );
 };
+*/

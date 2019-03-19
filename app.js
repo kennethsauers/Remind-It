@@ -31,7 +31,8 @@ const cors       = require('cors');
 const passport   = require('passport');
 const mongoose   = require('mongoose');
 const config     = require('./config/database');
-const users      = require('./routes/users')
+const users      = require('./routes/users');
+const events     = require('./routes/events');
 
 
 // Database initialization.
@@ -55,6 +56,7 @@ app.use(passport.initialize());         // Initialize Passport (1)
 app.use(passport.session());            // Initialize Passport (2)
 require('./config/passport')(passport); // Initialize Passport (3)
 app.use('/users', users);               // Initialize router.
+app.use('/events', events);
 
 
 // Point to Angular component.

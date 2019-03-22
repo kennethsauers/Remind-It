@@ -1,6 +1,8 @@
 // modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // components
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserpageComponent } from './userpage/userpage.component';
+import { EventsComponent } from './events/events.component';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,9 @@ import { UserpageComponent } from './userpage/userpage.component';
     RegisterComponent,
     AboutComponent,
     NavbarComponent,
-    UserpageComponent
+    UserpageComponent,
+    EventsComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,

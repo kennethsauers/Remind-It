@@ -10,14 +10,14 @@
  * Authors: Jose Luis, Jorge B. Nunez
  */
 
- const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // Defining the schema.
 const EventSchema = mongoose.Schema({
   isPublic: {
     type: Boolean
   },
-  creatorID: {
+  userID: {
     type: String
   },
   name: {
@@ -39,6 +39,17 @@ const EventSchema = mongoose.Schema({
   completionMethod: {
     type: String
   }
-});
+}, { collection: 'events' });
 
 const Event = module.exports = mongoose.model('Event', EventSchema);
+
+// Find an event by id wrapper
+module.exports.getEventById = function(id, callback) {
+  Event.findById(id, callback);
+}
+
+// Find an event by user id
+module.exports.getEventsByUserID = function(userID, callback) {
+  const query = { userID: userID }
+  Event.find(query, callback);
+}

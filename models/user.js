@@ -18,7 +18,7 @@ const UserSchema = mongoose.Schema({
   birthday: {
     type: Number
   }
-});
+}, {collection: 'users'});
 
 const User = module.exports = mongoose.model('User', UserSchema);
 

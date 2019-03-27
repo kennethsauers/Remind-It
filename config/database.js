@@ -12,6 +12,6 @@
  */
 
 module.exports = {
-  database: 'mongodb://localhost:27017/remindit',
+  database: 'mongodb://localhost:27017/remind-it',
   secret: 'lllknotscanmainbreadsat'
 }

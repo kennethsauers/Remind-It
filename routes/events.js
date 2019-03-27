@@ -23,7 +23,7 @@ const Event = require('../models/event');
 router.post('/create', (req, res, next) => {
   let newEvent = new Event({
     isPublic:         req.body.isPublic,
-    creatorID:        req.body.creatorID,
+    userID:           req.body.creatorID,
     name:             req.body.name,
     description:      req.body.description,
     location:         req.body.location,

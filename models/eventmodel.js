@@ -43,12 +43,17 @@ const EventSchema = mongoose.Schema({
 
 const Event = module.exports = mongoose.model('Event', EventSchema);
 
-// Find an event by id wrapper
-module.exports.getEventById = function(id, callback) {
+// CREATE: Generate and store a given event in the database.
+module.exports.addEvent = function(newEvent, callback) {
+  newEvent.save(callback);
+}
+
+// READ: Find an event by id wrapper
+module.exports.getEventByID = function(id, callback) {
   Event.findById(id, callback);
 }
 
-// Find an event by user id
+// READ: Find an event by user id
 module.exports.getEventsByUserID = function(userID, callback) {
   const query = { userID: userID }
   Event.find(query, callback);

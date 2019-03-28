@@ -22,8 +22,8 @@ const Event = require('../models/eventmodel');
 // Create event
 router.post('/create', (req, res, next) => {
   let newEvent = new Event({
+    userID:           req.body.userID,
     isPublic:         req.body.isPublic,
-    userID:           req.body.creatorID,
     name:             req.body.name,
     description:      req.body.description,
     location:         req.body.location,
@@ -31,7 +31,15 @@ router.post('/create', (req, res, next) => {
     dueDate:          req.body.dueDate,
     completionMethod: req.body.completionMethod
   });
-  res.json({success: true, msg: "Made event object", object: newEvent});
+  Event.addEvent(newEvent, (err, event) => {
+    if (err) {
+      res.json({success: false, msg: "Error adding event"});
+      console.log("Error adding event:" + err);
+    } else {
+      res.json({success: true, msg: "Event added", userID: newEvent.userID});
+    }
+  });
+
 /*
   User.getUserByUsername(req.body.username, (err, user) => {
     if (err) throw err;

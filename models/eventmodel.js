@@ -53,8 +53,14 @@ module.exports.getEventByID = function(id, callback) {
   Event.findById(id, callback);
 }
 
-// READ: Find an event by user id
+// READ: Find subset of events by user id
 module.exports.getEventsByUserID = function(userID, callback) {
-  const query = { userID: userID }
+  const query = { userID: userID };
+  Event.find(query, callback);
+}
+
+// READ: Find all public events
+module.exports.getPublicEvents = function(isPublic, callback) {
+  const query = { isPublic: isPublic };
   Event.find(query, callback);
 }

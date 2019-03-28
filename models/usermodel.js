@@ -53,7 +53,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
   });
 }
 
-/* // Add contact newContact to user by id
+// Add contact newContact to user by id
 module.exports.addContact = function(id, newContact, callback) {
   User.findByIdAndUpdate(id,
      { $push: { "contacts": newContact } },
@@ -64,4 +64,3 @@ module.exports.addContact = function(id, newContact, callback) {
      }
   );
 };
-*/

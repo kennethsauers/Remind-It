@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-var ContactSchema = require('./contact')
+//var ContactSchema = require('./contactmodel');
 
 // Define schema for User object
 const UserSchema = mongoose.Schema({

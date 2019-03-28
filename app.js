@@ -30,9 +30,9 @@ const bodyParser = require('body-parser');
 const cors       = require('cors');
 const passport   = require('passport');
 const mongoose   = require('mongoose');
-const config     = require('./config/database');
-const users      = require('./routes/users');
-const events     = require('./routes/events');
+const config     = require('./config/databaseconfig');
+const users      = require('./routes/userrouter');
+const events     = require('./routes/eventrouter');
 
 
 // Database initialization.
@@ -48,15 +48,15 @@ mongoose.connection.on('error', (err) => {
 
 
 // Backend initialization and definition.
-const app = express();                  // Initialize Express
-const port = 3000;                      // Define port to listen on.
-app.use(cors());                        // Initialize CORS
-app.use(bodyParser.json());             // Initialize Body Parser
-app.use(passport.initialize());         // Initialize Passport (1)
-app.use(passport.session());            // Initialize Passport (2)
-require('./config/passport')(passport); // Initialize Passport (3)
-app.use('/users', users);               // Initialize router.
-app.use('/events', events);
+const app = express();                        // Initialize Express
+const port = 3000;                            // Define port to listen on.
+app.use(cors());                              // Initialize CORS
+app.use(bodyParser.json());                   // Initialize Body Parser
+app.use(passport.initialize());               // Initialize Passport (1)
+app.use(passport.session());                  // Initialize Passport (2)
+require('./config/passportconfig')(passport); // Initialize Passport (3)
+app.use('/users', users);                     // Initialize user router.
+app.use('/events', events);                   // Initialize event router.
 
 
 // Point to Angular component.

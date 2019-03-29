@@ -89,6 +89,29 @@ router.put('/update', (req, res, next) => {
       }
     });
   }
+  else {
+    res.json({success: false, msg: "Error updating event: insufficient parameters."});
+  }
+});
+
+
+// Delete event
+router.delete('/delete', (req, res, next) => {
+  if (req.body._id) {
+    const eventID = req.body._id;
+    Event.deleteEvent(req.body._id, (err) => {
+      if (err) {
+        console.log("Error deleting event: " + err);
+        res.json({success: false, msg: "Failed to delete event."});
+      } else {
+        console.log("Deleted event.");
+        res.json({success: true, msg: "Deleted event successfully."});
+      }
+    });
+  }
+  else {
+    res.json({success: false, msg: "Error deleting event: insufficient parameters."});
+  }
 });
 
 

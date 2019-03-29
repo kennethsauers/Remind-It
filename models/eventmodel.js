@@ -69,3 +69,8 @@ module.exports.getPublicEvents = function(isPublic, callback) {
 module.exports.updateEvent = function(eventID, newEvent, callback) {
   Event.findOneAndUpdate({_id: eventID}, newEvent, {new: true}, callback);
 }
+
+// DELETE: Remove an event from the database.
+module.exports.deleteEvent = function(eventID, callback) {
+  Event.findOneAndRemove({_id: eventID}, callback);
+}

@@ -64,3 +64,8 @@ module.exports.getPublicEvents = function(isPublic, callback) {
   const query = { isPublic: isPublic };
   Event.find(query, callback);
 }
+
+// UPDATE: Overwrite data in a given event.
+module.exports.updateEvent = function(eventID, newEvent, callback) {
+  Event.findOneAndUpdate({_id: eventID}, newEvent, {new: true}, callback);
+}

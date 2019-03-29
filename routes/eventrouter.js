@@ -60,8 +60,8 @@ router.get('/read', (req, res, next) => {
   else if (req.body.isPublic) {
     Event.getPublicEvents(req.body.isPublic, (err, events) => {
       if (err) {
-        res.json({success: false, msg: "Failed to get public events."});
         console.log("Error getting public events: " + err);
+        res.json({success: false, msg: "Failed to get public events."});
       } else {
         console.log("Events: " + events);
         res.json({success: true, msg: events})
@@ -72,5 +72,24 @@ router.get('/read', (req, res, next) => {
     res.json({success: false, msg: "Error reading event: insufficient parameters"});
   }
 });
+
+
+// Update event
+router.put('/update', (req, res, next) => {
+  if (req.body._id) {
+    const eventID = req.body._id;
+    const newEvent = req.body;
+    Event.updateEvent(req.body._id, req.body, (err, newEvent) => {
+      if (err) {
+        console.log("Error updating event: " + err);
+        res.json({success: false, msg: "Failed to update event."});
+      } else {
+        console.log("New event: " + newEvent);
+        res.json({success: true, msg: newEvent});
+      }
+    });
+  }
+});
+
 
 module.exports = router;

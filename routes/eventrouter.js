@@ -46,21 +46,30 @@ router.post('/create', (req, res, next) => {
 
 // Read event
 router.get('/read', (req, res, next) => {
-  if (req.body.isPublic != null && req.body.isPublic == true) {
-    const publicEvents = Event.getPublicEvents(true, (err, events) => {
+  if (req.body.userID) {
+    Event.getEventsByUserID(req.body.userID, (err, events) => {
       if (err) {
-        res.json({success: false, msg: "Error reading public events"});
-        console.log("Error reading public events: " + err);
+        res.json({success: false, msg: "Failed to get events by user ID."})
+        console.log("Error getting events by user ID: " + err);
+      } else {
+        console.log("Events: " + events);
+        res.json({success: true, msg: events});
       }
-    })
-    res.json({success: true, msg: "Public events found", events: publicEvents});
+    });
   }
-  else if (req.body.userID != null) {
-    res.json({success: false, msg: "Reading events by userID not ready."});
+  else if (req.body.isPublic) {
+    Event.getPublicEvents(req.body.isPublic, (err, events) => {
+      if (err) {
+        res.json({success: false, msg: "Failed to get public events."});
+        console.log("Error getting public events: " + err);
+      } else {
+        console.log("Events: " + events);
+        res.json({success: true, msg: events})
+      }
+    });
   }
   else {
-    res.json({success: false, msg: "Error reading event"})
-
+    res.json({success: false, msg: "Error reading event: insufficient parameters"});
   }
 });
 

@@ -1,0 +1,43 @@
+// Register user and login
+{
+  "username": "testaccount",
+  "password": "testaccount"
+}
+
+// Create event
+// Remember to set up bearer token in the auth part.
+{
+    "userName": "testaccount",
+    "userID": "5c9fc7fdc733090cd86ef743",
+    "isPublic": false,
+    "name": "Test Event",
+    "description": "A sample event made through direct API calls.",
+    "location": 0,
+    "repeats": false,
+    "dueDate": 0,
+    "completionMethod": "To be defined."
+}
+
+// Find events by userID.
+{
+  "_id": "5c9fc7fdc733090cd86ef743"
+}
+
+// Find all public events.
+{
+  "isPublic": true
+}
+
+// Update an already-existing event form.
+{
+    "_id": "5c9fc9eb57c4420d28a8bd65",
+    "userName": "testaccount",
+    "userID": "5c9fc7fdc733090cd86ef743",
+    "isPublic": false,
+    "name": "Test Event Updated",
+    "description": "A sample event updated through direct API calls.",
+    "location": 0,
+    "repeats": false,
+    "dueDate": 0,
+    "completionMethod": "To be defined."
+}

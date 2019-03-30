@@ -22,8 +22,9 @@ const Event = require('../models/eventmodel');
 
 
 // Create event
-router.post('/create', (req, res, next) => {
+router.post('/create', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   let newEvent = new Event({
+    userName:         req.body.userName,
     userID:           req.body.userID,
     isPublic:         req.body.isPublic,
     name:             req.body.name,
@@ -45,7 +46,7 @@ router.post('/create', (req, res, next) => {
 
 
 // Read event
-router.get('/read', (req, res, next) => {
+router.get('/read', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   if (req.body.userID) {
     Event.getEventsByUserID(req.body.userID, (err, events) => {
       if (err) {
@@ -75,7 +76,7 @@ router.get('/read', (req, res, next) => {
 
 
 // Update event
-router.put('/update', (req, res, next) => {
+router.put('/update', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   if (req.body._id) {
     const eventID = req.body._id;
     const newEvent = req.body;
@@ -96,7 +97,7 @@ router.put('/update', (req, res, next) => {
 
 
 // Delete event
-router.delete('/delete', (req, res, next) => {
+router.delete('/delete', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   if (req.body._id) {
     const eventID = req.body._id;
     Event.deleteEvent(req.body._id, (err) => {

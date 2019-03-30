@@ -14,11 +14,14 @@ const mongoose = require('mongoose');
 
 // Defining the schema.
 const EventSchema = mongoose.Schema({
-  isPublic: {
-    type: Boolean
+  userName:{
+    type: String
   },
   userID: {
     type: String
+  },
+  isPublic: {
+    type: Boolean
   },
   name: {
     type: String

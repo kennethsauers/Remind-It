@@ -1,4 +1,4 @@
-<!--DOnt mess with the nav bar or ill kill you unless you can get it to drop down when screen is minimized :D-->
+<!--DOnt mess with the nav bar or ill kill you [ :) ] unless you can get it to drop down when screen is minimized :D-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/">Remind-It</a>
   <div class="navbar-collapse auto" id="navbarColor02" style="">
@@ -7,13 +7,23 @@
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li routerLinkActive="active" class="nav-item">
-        <a class="nav-link" routerLink="/login">login</a>
-      </li>
-      <li routerLinkActive="active" class="nav-item">
-        <a class="nav-link" routerLink="/register">register</a>
-      </li>
-      <li routerLinkActive="active" class="nav-item">
         <a class="nav-link" routerLink="/about">About</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="/login" *ngIf="!(loggedIn | async)">Login</a>
+        <a class="nav-link" routerLink="/userpage" *ngIf="(loggedIn | async)">User Page</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item" *ngIf="!(loggedIn | async)">
+        <a class="nav-link" routerLink="/register" *ngIf="!(loggedIn | async)">Register</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" routerLink="/events" *ngIf="(loggedIn | async)">Events</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="/maps" *ngIf="(loggedIn | async)">Maps</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
+        <a class="nav-link" routerLink="/login" (click)="authService.doLogout()" *ngIf="(loggedIn | async)">Sign Out</a>
       </li>
     </ul>
   </div>

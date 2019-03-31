@@ -37,7 +37,7 @@ const EventSchema = mongoose.Schema({
     type: Boolean
   },
   dueDate: {
-    type: Number
+    type: Date
   },
   completionMethod: {
     type: String
@@ -75,5 +75,5 @@ module.exports.updateEvent = function(eventID, newEvent, callback) {
 
 // DELETE: Remove an event from the database.
 module.exports.deleteEvent = function(eventID, callback) {
-  Event.findOneAndRemove({_id: eventID}, callback);
+  Event.deleteOne({_id: eventID}, callback);
 }

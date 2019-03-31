@@ -13,10 +13,10 @@ const UserSchema = mongoose.Schema({
     required: true
   },
   accountCreationDate: {
-    type: Number
+    type: Date
   },
   birthday: {
-    type: Number
+    type: Date
   }
 }, {collection: 'users'});
 
@@ -40,6 +40,7 @@ module.exports.addUser = function(newUser, callback) {
     bcrypt.hash(newUser.password, salt, (err, hash) => {
       if (err) throw err;
       newUser.password = hash;
+      newUser.accountCreationDate = new Date();
       newUser.save(callback);
     });
   });
@@ -53,14 +54,7 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
   });
 }
 
-// Add contact newContact to user by id
-module.exports.addContact = function(id, newContact, callback) {
-  User.findByIdAndUpdate(id,
-     { $push: { "contacts": newContact } },
-     { new: true },
-     (err, model) => {
-       if (err) throw err;
-       callback(err, model);
-     }
-  );
-};
+// Delete a User account
+module.exports.deleteUser = function(user, callback) {
+  User.deleteOne({ _id: user._id }, callback);
+}

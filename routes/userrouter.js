@@ -22,8 +22,7 @@ const User = require('../models/usermodel');
 router.post('/reg', (req, res, next) => {
   let newUser = new User({
     username: req.body.username,
-    password: req.body.password,
-    contacts: req.body.contacts
+    password: req.body.password
   });
 
   User.getUserByUsername(req.body.username, (err, user) => {
@@ -36,22 +35,11 @@ router.post('/reg', (req, res, next) => {
           res.json({ success: false, msg: "Failed to register user" });
           console.log("Failed to register user: " + err);
         } else {
-          res.json({ success: true, msg: "User registered" });
+          res.json({ success: true, msg: "User registered", user: user });
         }
       });
     }
   });
-
-/*
-  User.addUser(newUser, (err, user) => {
-    if (err) {
-      res.json({ success: false, msg: "Failed to register user" });
-      console.log("Failed to register user: " + err);
-    } else {
-      res.json({ success: true, msg: "User registered" });
-    }
-  });
-*/
 });
 
 // Authenticate
@@ -87,19 +75,22 @@ router.post('/auth', (req, res, next) => {
   });
 });
 
-// Return JSON-serialized contact list
-router.get('/contacts', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-  res.json(req.user.contacts);
-});
-
-// Create new contact and add to db
-router.put('/contacts/create', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-  const userId = req.user._id;
-  const newContact = req.body;
-
-  User.addContact(userId, newContact, (model) => {
-    res.json({ oldUser: req.user, newUser: model });
-  });
+// Delete account
+router.delete('/del', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  if (req.user) {
+    User.deleteUser(req.user, (err) => {
+      if (err) {
+        console.log("Error deleting user: " + err);
+        res.json({success: false, msg: "Failed to delete user."});
+      } else {
+        console.log("Deleted user.");
+        res.json({success: true, msg: "Deleted user successfully."});
+      }
+    });
+  }
+  else {
+    res.json({success: false, msg: "Error deleting user: insufficient parameters."});
+  }
 });
 
 module.exports = router;

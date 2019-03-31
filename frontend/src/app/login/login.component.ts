@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
     };
 
     this.authService.doLogin(userInformation).subscribe( (res: AuthenticationResponse) => {
-      console.log('login: ', res);
       if (res.success) {
         this.authService.handleAuthenticationResponse(res);
         this.router.navigate(['/userpage']);

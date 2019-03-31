@@ -4,7 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { AuthenticationResponse, UserInformation } from '../schema/authentication';
+import { RegisterResponse, AuthenticationResponse, UserInformation } from '../schema/authentication';
 import { User } from '../schema/user';
 
 @Injectable({
@@ -15,6 +15,11 @@ export class AuthenticationService {
   readonly ApiUrl = 'https://localhost:3000/users/';
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);
+
+  /**
+   * @param http HttpClient injection to make API requests
+   */
+  constructor(private http: HttpClient) { }
 
   public getToken(): string {
     /// TODO: Validate the token
@@ -33,10 +38,12 @@ export class AuthenticationService {
   }
 
   /**
-   * @param http HttpClient injection to make API requests
+   * Returns the status of the logged-in status of the user
+   * TODO: Validate token
    */
-  constructor(private http: HttpClient) {
-   }
+  isLoggedIn(): Observable<boolean> {
+    return this.isLoginSubject.asObservable();
+  }
 
    /**
     * Makes call to the Api and returns an AuthenticationResponse
@@ -65,14 +72,6 @@ export class AuthenticationService {
   }
 
   /**
-   * Returns the status of the logged-in status of the user
-   * TODO: Validate token
-   */
-  isLoggedIn(): Observable<boolean> {
-    return this.isLoginSubject.asObservable();
-  }
-
-  /**
    * Logs the user out and clears all associated data: authenticationToken and User object
    * TODO: Invalidate token
    */
@@ -81,5 +80,14 @@ export class AuthenticationService {
       localStorage.clear();
       this.isLoginSubject.next(false);
     }
+  }
+
+  doRegister(user: UserInformation) {
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post<RegisterResponse>(this.ApiUrl + 'reg', user, HttpOptions);
   }
 }

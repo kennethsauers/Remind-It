@@ -16,23 +16,23 @@
 		<a routerLink="https://www.facebook.com/" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
 	</p>
 	<hr>
-	<form>
+	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <input name="" class="form-control" placeholder="Email" type="email">
+        <input name="" class="form-control" placeholder="Username" type="text" formControlName="username" required maxlength="16">
     </div> <!-- form-group// -->
     <div class="form-group">
-        <input class="form-control" placeholder="******" type="password">
-    </div> <!-- form-group// -->                                      
+        <input class="form-control" placeholder="******" type="password" formControlName="password" required maxlength="16">
+    </div> <!-- form-group// -->
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" routerLink="/userpage"> Login  </button>
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid"> Login  </button>
             </div> <!-- form-group// -->
         </div>
         <div class="col-md-6 text-right">
             <a class="small" href="#">Forgot password?</a>
-        </div>                                            
-    </div> <!-- .row// -->                                                                  
+        </div>
+    </div> <!-- .row// -->
 </form>
 </article>
 </div> <!-- card.// -->

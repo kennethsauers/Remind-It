@@ -29,9 +29,11 @@ const EventSchema = mongoose.Schema({
   description: {
     type: String
   },
-  location: {
+  lat: {
     type: Number
-    // All JS numbers are 64-bit floats by design.
+  },
+  lon: {
+    type: Number
   },
   repeats: {
     type: Boolean
@@ -76,4 +78,9 @@ module.exports.updateEvent = function(eventID, newEvent, callback) {
 // DELETE: Remove an event from the database.
 module.exports.deleteEvent = function(eventID, callback) {
   Event.deleteOne({_id: eventID}, callback);
+}
+
+// DELETE: Remove all the events belonging to a userID.
+module.exports.purgeUsersEvents = function(userID, callback) {
+  Event.deleteMany({userID: userID}, callback);
 }

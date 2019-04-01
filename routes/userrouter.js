@@ -79,6 +79,14 @@ router.post('/auth', (req, res, next) => {
 // Delete account
 router.delete('/del', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   if (req.user) {
+    Event.purgeUsersEvents(req.user._id, (err) => {
+      if (err) {
+        console.log("Error purging user's events: " + err);
+        res.json({success: false, msg: "Failed to purge user's events."});
+      } else {
+        console.log("Purged user " + req.user._id _ "'s events.");
+      }
+    });
     User.deleteUser(req.user, (err) => {
       if (err) {
         console.log("Error deleting user: " + err);

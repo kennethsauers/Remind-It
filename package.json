@@ -1,7 +1,7 @@
 {
-  "name": "contact_man",
+  "name": "remind-it",
   "version": "1.0.0",
-  "description": "TMT",
+  "description": "To be defined later.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +18,11 @@
     "passport": "*",
     "passport-jwt": "*"
   },
-  "author": "the mean team",
+  "author": "The MEAN Team",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kennethsauers/remind-it.git"
+  }
 }

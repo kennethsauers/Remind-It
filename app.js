@@ -60,7 +60,7 @@ app.use('/events', events);                   // Initialize event router.
 
 
 // Point to Angular component.
-app.use(express.static(path.join(__dirname, 'frontend')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Implicitly deny access to root endpoint.

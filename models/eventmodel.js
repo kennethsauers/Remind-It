@@ -29,9 +29,11 @@ const EventSchema = mongoose.Schema({
   description: {
     type: String
   },
-  location: {
+  lat: {
     type: Number
-    // All JS numbers are 64-bit floats by design.
+  },
+  lng: {
+    type: Number
   },
   repeats: {
     type: Boolean

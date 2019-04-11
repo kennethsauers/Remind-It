@@ -12,7 +12,8 @@
     "isPublic": false,
     "name": "Test Event",
     "description": "A sample event made through direct API calls.",
-    "location": 0,
+    "lat": 0,
+    "lng": 0,
     "repeats": false,
     "dueDate": 0,
     "completionMethod": "To be defined."
@@ -36,7 +37,8 @@
     "isPublic": false,
     "name": "Test Event Updated",
     "description": "A sample event updated through direct API calls.",
-    "location": 0,
+    "lat": 0,
+    "lng": 0,
     "repeats": false,
     "dueDate": 0,
     "completionMethod": "To be defined."

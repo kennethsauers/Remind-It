@@ -29,7 +29,8 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
     isPublic:         req.body.isPublic,
     name:             req.body.name,
     description:      req.body.description,
-    location:         req.body.location,
+    lat:              req.body.lat,
+    lng:              req.body.lng,
     repeats:          req.body.repeats,
     dueDate:          req.body.dueDate,
     completionMethod: req.body.completionMethod

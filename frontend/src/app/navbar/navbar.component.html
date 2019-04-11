@@ -17,6 +17,9 @@
         <a class="nav-link" routerLink="/register" *ngIf="!(loggedIn | async)">Register</a>
       </li>
       <li routerLinkActive="active" class="nav-item">
+      <a class="nav-link" routerLink="/reminders" *ngIf="(loggedIn | async)">Events</a>
+      </li>
+      <li routerLinkActive="active" class="nav-item">
       <a class="nav-link" routerLink="/events" *ngIf="(loggedIn | async)">Events</a>
       </li>
       <li routerLinkActive="active" class="nav-item">

@@ -49,7 +49,7 @@ mongoose.connection.on('error', (err) => {
 
 // Backend initialization and definition.
 const app = express();                        // Initialize Express
-const port = 3000;                            // Define port to listen on.
+const port = 443;                             // Define port to listen on.
 app.use(cors());                              // Initialize CORS
 app.use(bodyParser.json());                   // Initialize Body Parser
 app.use(passport.initialize());               // Initialize Passport (1)

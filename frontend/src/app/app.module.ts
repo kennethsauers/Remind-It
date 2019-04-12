@@ -16,6 +16,7 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { EventsComponent } from './events/events.component';
 import { MapsComponent } from './maps/maps.component';
 import { RemindersComponent } from './reminders/reminders.component';
+import { CreateReminderComponent } from './create-reminder/create-reminder.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RemindersComponent } from './reminders/reminders.component';
     UserpageComponent,
     EventsComponent,
     MapsComponent,
-    RemindersComponent
+    RemindersComponent,
+    CreateReminderComponent
   ],
   imports: [
     BrowserModule,

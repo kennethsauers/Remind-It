@@ -40,7 +40,7 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
       res.json({success: false, msg: "Error adding event"});
       console.log("Error adding event:" + err);
     } else {
-      res.json({success: true, msg: "Event added", userID: newEvent.userID});
+      res.json({success: true, msg: "Event added", event: event});
     }
   });
 });

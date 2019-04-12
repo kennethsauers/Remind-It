@@ -44,7 +44,7 @@
       <input class="form-control" placeholder="Repeat password" type="password" formControlName="confirmPassword" required maxlength="256">
     </div> <!-- form-group// -->
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="!registerForm.valid && !this.checkPasswords()">Create Account</button>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="!registerForm.valid || !this.checkPasswords()">Create Account</button>
     </div> <!-- form-group// -->
     <p class="text-center">Have an account? <a routerLink="/login">Log In</a> </p>
 </form>

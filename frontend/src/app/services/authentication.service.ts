@@ -12,7 +12,7 @@ import { User } from '../schema/user';
 })
 export class AuthenticationService {
   /// TODO: Change according to your setup
-  readonly ApiUrl = 'https://localhost/users/';
+  readonly ApiUrl = 'http://localhost:3000/users/';
   //readonly ApiUrl = 'https://themeanteam.site/users';
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);

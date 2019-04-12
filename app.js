@@ -58,22 +58,30 @@ require('./config/passportconfig')(passport); // Initialize Passport (3)
 app.use('/users', users);                     // Initialize user router.
 app.use('/events', events);                   // Initialize event router.
 
-
-// Point to Angular component.
+// Point to Angular build location.
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Implicitly deny access to root endpoint.
 app.get('/', (req, res) => {
   res.send("invalid endpoint")
 });
 
+// Serve files from 'ng build' aka frontend. -- Jose
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
-// Finally, start the server.
-https.createServer({
+// Starts server
+app.listen(3000, () => {
+  console.log("HTTP server started on port 3000.");
+});
+
+// When deploying, uncomment everything below and comment out the above
+// app.listen() code.
+/*https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
 }, app)
-.listen(port, () => {
-  console.log("HTTPS server started on port " + port);
-});
+.listen(443, () => {
+  console.log("HTTPS server started on port 443.");
+});*/

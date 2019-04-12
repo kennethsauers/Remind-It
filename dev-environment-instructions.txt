@@ -13,10 +13,11 @@ The following are required for your Windows development environment:
   * A browser (Google Chrome, Mozilla Firefox, Microsoft Edge)
   * A text editor (Notepad++, Sublime, Atom)
   * GitHub Desktop (or a Git shell if you wanna be that guy)
-  * A Rest client for API testing (ARC, Postman, Soap UI)
+  * A REST client for API testing (ARC, Postman, Soap UI)
     NOTE: You can install ARC as a Google Chrome extension.
   * Android Studio
   * Windows Linux Subsystem
+    - Node Package Manager
     - Node.js
     - MongoDB
 
@@ -28,15 +29,16 @@ The following are required for your Windows development environment:
 To run the API, navigate to the root Remind-It directory with a Linux shell
 and type:
 
-  node app.js   OR    npm start   OR    nodemon
+  nodemon
 
 To compile the front end, navigate to the Remind-It/frontend directory with a
 second Linux shell and type:
 
   ng serve
 
-You can then access the API using your Rest client at port 3000, and you can
-access the website itself from port 4200.
+You can then access the API using your REST client at port 3000, and you can
+access the website itself from port 4200. For local development purposes,
+we use HTTP and access the website through localhost.
 
 
 -------------------------------------------------------------------

@@ -29,19 +29,19 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 		 </div>
-        <input name="" class="form-control" placeholder="Email address" type="email" formControlName="email" required maxlength="255">
+        <input name="" class="form-control" placeholder="Email address" type="email" formControlName="email" required maxlength="32">
     </div>
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-      <input class="form-control" placeholder="Enter a password" type="password" formControlName="password" required maxlength="16">
+      <input class="form-control" placeholder="Enter a password" type="password" formControlName="password" required maxlength="256">
     </div> <!-- form-group// -->
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
-      <input class="form-control" placeholder="Repeat password" type="password" formControlName="confirmPassword" required maxlength="16">
+      <input class="form-control" placeholder="Repeat password" type="password" formControlName="confirmPassword" required maxlength="256">
     </div> <!-- form-group// -->
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block" [disabled]="!registerForm.valid && !this.checkPasswords()">Create Account</button>

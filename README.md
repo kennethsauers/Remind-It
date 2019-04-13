@@ -19,11 +19,6 @@ Jorge Nuñez 				API, Databasing
 ## Images
 --  TODO ADD IMAGES  --
 ## Installation
-                               =================
-                               | THE MEAN TEAM |
-                               =================
-
-
 --------------------------------------
 | SETTING UP YOUR WORKSPACE IN WIN10 |
 --------------------------------------

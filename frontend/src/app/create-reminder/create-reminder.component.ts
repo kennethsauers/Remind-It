@@ -7,6 +7,7 @@ import { CreateReminderInformation, CreateReminderResponse } from '../schema/rem
 import { AuthenticationService } from '../services/authentication.service';
 import { EventService } from '../services/event.service';
 import { Subject } from 'rxjs';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create-reminder',
@@ -38,8 +39,9 @@ export class CreateReminderComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private eventService: EventService,
+              public activeModal: NgbActiveModal,
               private router: Router) { }
-
+              
   ngOnInit() {
     this._success.subscribe( (msg) => { this.message = msg });
     this._success.pipe(

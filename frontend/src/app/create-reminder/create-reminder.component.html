@@ -7,12 +7,14 @@
 <!--DONT TOUCH ANY CODE ABOVE, its required for the style/design to run smoothly-->
 
 <!--Entire form container-->
-<div class="container">
-  <ngb-alert *ngIf="success" type="success" (close)="success = null">{{ message }}</ngb-alert>
-  <ngb-alert *ngIf="success != null && !success" type="danger" (close)="success = null">{{ message }}</ngb-alert>
-<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mb-4 mt-1">Let Remind-It, Remind You.</h4>
-	<form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
+<article class="card-body mx-auto">
+    <ngb-alert *ngIf="success" type="success" (close)="success = null">{{ message }}</ngb-alert>
+    <ngb-alert *ngIf="success != null && !success" type="danger" (close)="success = null">{{ message }}</ngb-alert>
+<div class="modal-header">
+  <h4 class="modal-title mb-4 mt-1">Let Remind-It, Remind You.</h4>
+</div>
+<form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
     <div class="form-group">
         <input name="" class="form-control" placeholder="Name" type="text" formControlName="name" required maxlength="32">
     </div> <!-- form-group// -->
@@ -26,9 +28,9 @@
                 name="dp" formControlName="dueDate" ngbDatepicker #d="ngbDatepicker" required>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-        </div>
-      </div>
-    </div>
+        </div> <!-- input-group-append -->
+      </div> <!-- input-group-->
+    </div> <!-- form-group-->
     <div class="form-check">
         <input class="form-check-input" type="checkbox" formControlName="isPublic" id="checkBoxPublic">
         <label class="form-check-label" for="checkBoxPublic">Is it Public?</label>
@@ -36,14 +38,16 @@
     <div class="form-check">
         <input class="form-check-input" type="checkbox" formControlName="isRepeating" id="checkBoxRepeating">
         <label class="form-check-label" for="checkBoxRepeating">Is it Repeating?</label>
-    </div> <!-- form-check// -->    
+    </div> <!-- form-check// -->   
+  </div> <!-- modal-body-->
+  <div class="modal-footer">
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" [disabled]="!createReminderForm.valid">Create Reminder</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!createReminderForm.valid">Create Reminder</button>
             </div> <!-- form-group// -->
-        </div>
+        </div> <!-- .col -->
     </div> <!-- .row// -->
-</form>
-</article>
-</div> <!-- card.// -->
+  </div> <!-- modal footer -->
+</form><!-- form-->
+</article><!-- card.// -->

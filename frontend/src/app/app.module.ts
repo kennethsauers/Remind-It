@@ -42,6 +42,7 @@ import { CreateReminderComponent } from './create-reminder/create-reminder.compo
     NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateReminderComponent]
 })
 export class AppModule { }

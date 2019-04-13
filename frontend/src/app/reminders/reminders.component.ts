@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateReminderComponent } from '../create-reminder/create-reminder.component';
 
 @Component({
   selector: 'app-reminders',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemindersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
+  createReminder() {
+    const modalRef = this.modalService.open(CreateReminderComponent);
+  }
 }

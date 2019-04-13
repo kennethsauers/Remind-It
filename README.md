@@ -1,13 +1,13 @@
 # RemindIt
 A reminder app utilized gps services build for students with busy lives.
 ## Team
-Kenneth Sauers			Project Manager
-Misty Au					Project Documentation
-Kyle Reid				Front End, Mobile Development
-Christopher Dowlatram 	Front End
-Mykola Maslych 			Web Deployment, Mobile Development
-Jose Luis 				API, Databasing
-Jorge Nuñez 				API, Databasing
+* Kenneth Sauers			Project Manager
+* Misty Au					Project Documentation
+* Kyle Reid				Front End, Mobile Development
+* Christopher Dowlatram 	   Front End
+* Mykola Maslych 			Web Deployment, Mobile Development
+* Jose Luis 				API, Databasing
+* Jorge Nuñez 				API, Databasing
 ## Technology used
 * Mongondb
 * Express

@@ -1,4 +1,4 @@
-# RemindIt
+# Remind-It
 A reminder app utilized gps services build for students with busy lives.
 ## Team
 * Kenneth Sauers			Project Manager
@@ -19,9 +19,9 @@ A reminder app utilized gps services build for students with busy lives.
 ## Images
 --  TODO ADD IMAGES  --
 ## Installation
---------------------------------------
-| SETTING UP YOUR WORKSPACE IN WIN10 |
---------------------------------------
+----------------------------------
+SETTING UP YOUR WORKSPACE IN WIN10
+----------------------------------
 
 The following are required for your Windows development environment:
 
@@ -30,7 +30,7 @@ The following are required for your Windows development environment:
   * A text editor (Notepad++, Sublime, Atom)
   * GitHub Desktop (or a Git shell if you wanna be that guy)
   * A REST client for API testing (ARC, Postman, Soap UI)
-    NOTE: You can install ARC as a Google Chrome extension.
+    - NOTE: You can install ARC as a Google Chrome extension.
   * Android Studio
   * Windows Linux Subsystem
     - Node Package Manager
@@ -38,9 +38,9 @@ The following are required for your Windows development environment:
     - MongoDB
 
 
--------------------------------------------------------
-| RUNNING THE SERVER IN ITS DEVELOPMENT CONFIGURATION |
--------------------------------------------------------
+---------------------------------------------------
+RUNNING THE SERVER IN ITS DEVELOPMENT CONFIGURATION
+---------------------------------------------------
 
 To run the API, navigate to the root Remind-It directory with a Linux shell
 and type:
@@ -57,9 +57,9 @@ access the website itself from port 4200. For local development purposes,
 we use HTTP and access the website through localhost.
 
 
--------------------------------------------------------------------
-| CHANGING THE LINUX SHELL HOME DIRECTORY TO YOUR WINDOWS DESKTOP |
--------------------------------------------------------------------
+---------------------------------------------------------------
+CHANGING THE LINUX SHELL HOME DIRECTORY TO YOUR WINDOWS DESKTOP
+---------------------------------------------------------------
 
 After you open up the Windows Linux Subsystem shell, type:
 

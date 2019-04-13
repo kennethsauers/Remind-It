@@ -1,0 +1,10 @@
+/* dont touch the css!!! -.- aligns perfectly with edge of page */
+#main{
+    width:50%;
+    margin-left: 3px;
+}
+
+#side{
+    width:49%;
+    background-color: #253238;
+}

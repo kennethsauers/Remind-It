@@ -1,27 +1,57 @@
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Due</th>
-    </tr>
-    </thead>
-    <tr class="table-secondary">
-        <!-- sett up borders or somthing to seperate each lists of events -->
-        <td>Go to Class</td>
-        <td>I need to go to class because I never do.</td>
-        <td>Mo, 2019-04-15, 12:00 p.m.</td>
-    </tr>
-    <tr class="table-secondary">
-        <td>Do Laundry</td>
-        <td>Stop wearing hoodies in Florida.</td>
-        <td>Fr, 2019-04-12, 11:59 p.m.</td>
-    </tr>
-    <tr class="table-secondary">
-        <td>Finish Website</td>
-        <td>Holy fuck I hate Angular it's so big and bloated.</td>
-        <td>Tu, 2019-04-16, 11:59 p.m.</td>
-    </tr>
-</table>
-<button type="button" class="btn btn-success" (click)="createReminder()">Create Reminder</button>
-<!--button type="button" class="btn btn-danger">Delete Event</button-->
+<!-- sets up a row of two columns -->
+<div class='row'>
+    <div id="main" class="column">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Due</th>
+            </tr>
+            </thead>
+            <tr class="table-secondary">
+                <!-- sett up borders or somthing to seperate each lists of events -->
+                <td>Go to Class</td>
+                <td>I need to go to class because I never do.</td>
+                <td>Mo, 2019-04-15, 12:00 p.m.</td>
+            </tr>
+            <tr class="table-secondary">
+                <td>Do Laundry</td>
+                <td>Stop wearing hoodies in Florida.</td>
+                <td>Fr, 2019-04-12, 11:59 p.m.</td>
+            </tr>
+            <tr class="table-secondary">
+                <td>Finish Website</td>
+                <td>Holy fuck I hate Angular it's so big and bloated.</td>
+                <td>Tu, 2019-04-16, 11:59 p.m.</td>
+            </tr>
+        </table>
+        <button type="button" class="btn btn-success" (click)="createReminder()">Create Reminder</button>
+        <!--button type="button" class="btn btn-danger">Delete Event</button-->
+    </div>
+    <!-- other column has maps and the reminders stuff on the right side of webpage -->
+    <div id="side" class="column">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.911485963415!2d-81.20224858460165!3d28.60243209219278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e7685d6a0a495f%3A0x5fd59b92b3c79bab!2sUniversity+of+Central+Florida!5e0!3m2!1sen!2sus!4v1555186205301!5m2!1sen!2sus" 
+        width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+        <!--Entire login container-->
+    <div class="container">
+        <article class="card-body mx-auto" style="max-width: mx-auto">
+        <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
+        <h4 class="card-title mb-4 mt-1">Reminders</h4>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="exampleTextarea">Beep</label>
+            <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+
+            <label for="exampleTextarea">Bop</label>
+            <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+
+            <label for="exampleTextarea">Boop</label>
+            <textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
+        </div>
+        </form>
+        </article>
+    </div> <!-- card.// -->
+    </div>
+</div>

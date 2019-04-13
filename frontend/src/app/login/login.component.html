@@ -12,10 +12,6 @@
     <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
 	<a routerLink="/register" class="float-right btn btn-outline-primary">Sign up</a>
 	<h4 class="card-title mb-4 mt-1">Sign in</h4>
-	<p>
-		<a routerLink="https://twitter.com/" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-		<a routerLink="https://www.facebook.com/" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
-	</p>
 	<hr>
 	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">

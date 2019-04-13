@@ -9,6 +9,8 @@
 <div class="container">
 <div>
 <article class="card-body mx-auto" style="max-width: 400px;">
+	<ngb-alert *ngIf="success" type="success" (close)="success = null">{{ message }}</ngb-alert>
+	<ngb-alert *ngIf="success != null && !success" type="danger" (close)="success = null">{{ message }}</ngb-alert>
 	<h4 class="card-title mt-3 text-center">Create Account</h4>
 	<p class="text-center">Get started with your free account</p>
 	<p>

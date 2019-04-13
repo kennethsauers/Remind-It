@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../services/authentication.service';
 import { AuthenticationResponse, UserInformation } from '../schema/authentication';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +23,9 @@ export class LoginComponent implements OnInit {
       Validators.maxLength(16)
     ])
   });
+  
+  private _error = new Subject<String>();
+  message: String;
 
   /**
    * @params authService AuthenticationService injection
@@ -30,6 +35,10 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this._error.subscribe( (msg) => { this.message = msg; });
+    this._error.pipe(
+      debounceTime(5000)
+    ).subscribe( () => this.message = null );
   }
 
   onSubmit() {
@@ -43,7 +52,7 @@ export class LoginComponent implements OnInit {
         this.authService.handleAuthenticationResponse(res);
         this.router.navigate(['/userpage']);
       } else {
-        console.log('login failed: ', res.msg);
+        this._error.next(res.msg);
       }
     });
   }

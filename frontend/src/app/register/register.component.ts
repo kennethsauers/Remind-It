@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from
 
 import { AuthenticationService } from '../services/authentication.service';
 import { RegisterResponse, UserInformation } from '../schema/authentication';
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +32,10 @@ export class RegisterComponent implements OnInit {
     ])
   });
 
+  private _success = new Subject<String>();
+  success: Boolean;
+  message: String;
+
   checkPasswords(): boolean {
     const pass = this.registerForm.get('password').value;
     const confirmPass = this.registerForm.get('confirmPassword').value;
@@ -45,6 +51,13 @@ export class RegisterComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this._success.subscribe( (msg) => { this.message = msg });
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe( () => {
+      this.success = null;
+    });
+    
   }
 
   onSubmit() {
@@ -55,12 +68,10 @@ export class RegisterComponent implements OnInit {
     };
 
     this.authService.doRegister(userInformation).subscribe( (res: RegisterResponse) => {
-      if (res.success) {
-        /// TODO: Congratulate the user on logging in, very wow
-        this.router.navigate(['/login']);
-      } else {
-        console.log('register failed: ', res.msg);
-      }
+        if (res.success)
+          this.router.navigate(['/login']);
+        this.success = res.success;
+        this._success.next(res.msg);
     });
   }
 }

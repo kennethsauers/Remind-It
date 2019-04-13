@@ -8,6 +8,8 @@
 
 <!--Entire form container-->
 <div class="container">
+  <ngb-alert *ngIf="success" type="success" (close)="success = null">{{ message }}</ngb-alert>
+  <ngb-alert *ngIf="success != null && !success" type="danger" (close)="success = null">{{ message }}</ngb-alert>
 <article class="card-body mx-auto" style="max-width: 400px;">
 	<h4 class="card-title mb-4 mt-1">Let Remind-It, Remind You.</h4>
 	<form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
@@ -17,6 +19,16 @@
     <div class="form-group">
         <textarea class="form-control" placeholder="Description" formControlName="description" required rows="3"></textarea>
     </div> <!-- form-group// -->
+    <div class="form-group">
+      <ngb-timepicker formControlName="time" [meridian]="true" [size]="small"></ngb-timepicker>
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+                name="dp" formControlName="dueDate" ngbDatepicker #d="ngbDatepicker" required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+    </div>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" formControlName="isPublic" id="checkBoxPublic">
         <label class="form-check-label" for="checkBoxPublic">Is it Public?</label>

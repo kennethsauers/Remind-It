@@ -1,0 +1,18 @@
+<div class="container">
+  <article class="card-body mx-auto" style="max-width: mx-auto">
+    <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
+    <h4 class="card-title mb-4 mt-1">Reminders</h4>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="exampleTextarea">Beep</label>
+        <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+
+        <label for="exampleTextarea">Bop</label>
+        <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
+
+        <label for="exampleTextarea">Boop</label>
+        <textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
+      </div>
+    </form>
+  </article>
+</div> <!-- card.// -->

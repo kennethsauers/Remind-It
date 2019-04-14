@@ -19,6 +19,8 @@ import { MapsComponent } from './maps/maps.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { CreateReminderComponent } from './create-reminder/create-reminder.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { ReminderViewComponent } from './reminder-view/reminder-view.component';
+import { EventViewComponent } from './event-view/event-view.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { CreateEventComponent } from './create-event/create-event.component';
     MapsComponent,
     RemindersComponent,
     CreateReminderComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    ReminderViewComponent,
+    EventViewComponent
   ],
   imports: [
     BrowserModule,

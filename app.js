@@ -23,7 +23,9 @@
 //   Config defines the database doc format.
 //   Users defines backend routes.
 const express    = require('express');
+const http       = require('http');
 const https      = require('https');
+const normPort   = require('normalize-port');
 const fs         = require('fs');
 const path       = require('path');
 const bodyParser = require('body-parser');
@@ -48,15 +50,16 @@ mongoose.connection.on('error', (err) => {
 
 
 // Backend initialization and definition.
-const app = express();                        // Initialize Express
-const port = 443;                             // Define port to listen on.
-app.use(cors());                              // Initialize CORS
-app.use(bodyParser.json());                   // Initialize Body Parser
-app.use(passport.initialize());               // Initialize Passport (1)
-app.use(passport.session());                  // Initialize Passport (2)
-require('./config/passportconfig')(passport); // Initialize Passport (3)
-app.use('/users', users);                     // Initialize user router.
-app.use('/events', events);                   // Initialize event router.
+const app = express();                             // Initialize Express
+const port = normPort(process.env.PORT || '3000'); // Define port to listen on.
+app.set('port', port);
+app.use(cors());                                   // Initialize CORS
+app.use(bodyParser.json());                        // Initialize Body Parser
+app.use(passport.initialize());                    // Initialize Passport (1)
+app.use(passport.session());                       // Initialize Passport (2)
+require('./config/passportconfig')(passport);      // Initialize Passport (3)
+app.use('/users', users);                          // Initialize user router.
+app.use('/events', events);                        // Initialize event router.
 
 // Point to Angular build location.
 app.use(express.static(path.join(__dirname, 'public')));

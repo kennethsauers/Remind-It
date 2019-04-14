@@ -11,7 +11,7 @@
   <ngb-alert *ngIf="success" type="success" (close)="success = null">{{ message }}</ngb-alert>
   <ngb-alert *ngIf="success != null && !success" type="danger" (close)="success = null">{{ message }}</ngb-alert>
   <div class="modal-header">
-    <h4 class="modal-title mb-4 mt-1">Let Remind-It, Remind You.</h4>
+    <h2 class="modal-title mb-4 mt-1">New Reminder</h2>
     <button type="button" class="close" aria-label="Close" (click)="this.activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -19,13 +19,16 @@
   <form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
     <div class="modal-body">
       <div class="form-group">
+        <h4>Name</h4>
         <input class="form-control" placeholder="Name" type="text" formControlName="name" required maxlength="32">
       </div> <!-- form-group// -->
       <div class="form-group">
+        <h4>Description</h4>
         <textarea class="form-control" placeholder="Description" formControlName="description" required
           rows="3"></textarea>
       </div> <!-- form-group// -->
       <div class="form-group">
+        <h4>Due Date</h4>
         <div class="row">
           <ngb-timepicker class="col-sm" formControlName="time" [meridian]="true" [size]="small"></ngb-timepicker>
           <div class="col-sm d-flex align-items-center">
@@ -34,10 +37,14 @@
           </div>
         </div>
       </div> <!-- form-group-->
-      <div class="form-check">
+      <div class="custom-control custom-checkbox"> <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
+        <input type="checkbox" class="custom-control-input" formControlName="isRepeating" id="checkBoxRepeating">
+        <label class="custom-control-label" for="checkBoxRepeating">Does it repeat?</label>
+      </div>
+      <!--div class="form-check">
         <input class="form-check-input" type="checkbox" formControlName="isRepeating" id="checkBoxRepeating">
         <label class="form-check-label" for="checkBoxRepeating">Is it Repeating?</label>
-      </div> <!-- form-check// -->
+      </div--> <!-- form-check// -->
     </div> <!-- modal-body-->
     <div class="modal-footer align-items-center">
       <div class="form-group">

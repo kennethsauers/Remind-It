@@ -24,16 +24,18 @@ const Event = require('../models/eventmodel');
 // Create event
 router.post('/create', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   let newEvent = new Event({
-    userName:         req.body.userName,
-    userID:           req.body.userId,
+    userID:           req.body.userID,
     isPublic:         req.body.isPublic,
     name:             req.body.name,
     description:      req.body.description,
     lat:              req.body.lat,
     lng:              req.body.lng,
     repeats:          req.body.repeats,
+    repeatUnit:       req.body.repeatUnit,
+    repeatConst:      req.body.repeatConst,
     dueDate:          req.body.dueDate,
-    completionMethod: req.body.completionMethod
+    mustBeNear:       req.body.mustBeNear,
+    isComplete:       req.body.isComplete
   });
   Event.addEvent(newEvent, (err, event) => {
     if (err) {

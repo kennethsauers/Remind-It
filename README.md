@@ -1,21 +1,22 @@
 # Remind-It
 A reminder app utilized gps services build for students with busy lives.
 ## Team
-* Kenneth Sauers			Project Manager
-* Misty Au					Project Documentation
-* Kyle Reid				Front End, Mobile Development
-* Christopher Dowlatram 	   Front End
-* Mykola Maslych 			Web Deployment, Mobile Development
-* Jose Luis 				API, Databasing
-* Jorge Nuñez 				API, Databasing
+* Kenneth Sauers, Project Manager
+* Misty Au, Project Documentation
+* Kyle Reid, Front End Development
+* Christopher Dowlatram, Front End Development & Mobile Development
+* Mykola Maslych, Mobile Development & Web Deployment
+* Jose Luis, API Development & Databasing
+* Jorge Nuñez, API Development & Databasing
 ## Technology used
-* Mongondb
-* Express
-* Angular
-* node.js
+* MongoDB
+* Node.js
+* Express.js
 * Mongoose
-* bcrypt
-* BootStrap
+* BCrypt
+* Passport.js
+* Angular
+* Bootstrap
 ## Images
 --  TODO ADD IMAGES  --
 ## Installation

@@ -35,11 +35,20 @@ const EventSchema = mongoose.Schema({
   repeats: {
     type: Boolean
   },
+  repeatUnit: {
+      type: String
+  },
+  repeatConst: {
+    type: Number
+  },
   dueDate: {
     type: Date
   },
-  completionMethod: {
-    type: String
+  mustBeNear: {
+    type: Boolean
+  },
+  isComplete: {
+    type: Boolean
   }
 }, { collection: 'events' });
 

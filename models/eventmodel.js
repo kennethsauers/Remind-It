@@ -85,3 +85,8 @@ module.exports.updateEvent = function(eventID, newEvent, callback) {
 module.exports.deleteEvent = function(eventID, callback) {
   Event.deleteOne({_id: eventID}, callback);
 }
+
+// DELETE: Remove all events associated with a given userID.
+module.exports.deleteAllEventsByUserID = function(userID, callback) {
+    Event.deleteMany({userID: userID}, callback);
+}

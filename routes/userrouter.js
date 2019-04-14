@@ -62,7 +62,7 @@ router.post('/auth', (req, res, next) => {
         const token = jwt.sign({ data: user }, config.secret, {
           expiresIn: 604800 // 1 week
         });
-        
+
         if (isMobile) {
           Event.getEventsByUserID(user._id, (err, events) => {
             if (!err) {
@@ -97,6 +97,13 @@ router.post('/auth', (req, res, next) => {
 // Delete account
 router.delete('/del', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   if (req.user) {
+    Event.deleteAllEventsByUserID(req.body.userID, (err) => {
+      if (err) {
+        console.log("Error deleting all of the user's events: " + err);
+        res.json({success: false, msg: "Failed to delete user's events."});
+    } else {
+        console.log("Successfully deleted all of the user's events.");
+    }});
     User.deleteUser(req.user, (err) => {
       if (err) {
         console.log("Error deleting user: " + err);

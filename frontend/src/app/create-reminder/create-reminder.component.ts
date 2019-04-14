@@ -58,7 +58,7 @@ export class CreateReminderComponent implements OnInit {
 
   onSubmit() {
     const reminderInformation: CreateReminderInformation = {
-      userID: this.authService.getUser().id,
+      userId: this.authService.getUser().id,
       userName: this.authService.getUser().username,
       // Reminders are private only, pls confirm
       isPublic: false,

@@ -32,9 +32,9 @@ export class RegisterComponent implements OnInit {
     ])
   });
 
-  private _success = new Subject<String>();
-  success: Boolean;
-  message: String;
+  private _success = new Subject<string>();
+  success: boolean;
+  message: string;
 
   checkPasswords(): boolean {
     const pass = this.registerForm.get('password').value;

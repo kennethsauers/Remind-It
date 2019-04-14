@@ -67,6 +67,16 @@ router.get('/get/all', passport.authenticate('jwt', { session: false }), (req, r
   });
 });
 
+router.get('/get/id/:id', passport.authenticate('jwt', { session : false }), (req, res, next) => {
+  Event.getEventByID(req.params.id, (err, event) => {
+    if (err) {
+      res.json({})
+    } else {
+      res.json(event)
+    }
+  }); 
+});
+
 // Read event
 router.get('/read', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   if (req.body.userID) {

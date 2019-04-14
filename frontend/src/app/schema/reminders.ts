@@ -1,13 +1,13 @@
 export class Reminder {
-    constructor(public name: String,
-        public description: String,
+    constructor(public name: string,
+        public description: string,
         public dueDate: Date,
-        public _id?: String,
-        public userID?: String,
-        public lat?: Number,
-        public lng?: Number,
-        public repeats?: Boolean,
-        completionMethod?: String) { }
+        public _id?: string,
+        public userID?: string,
+        public lat?: number,
+        public lng?: number,
+        public repeats?: boolean,
+        completionMethod?: string) { }
 }
 
 /**
@@ -15,23 +15,23 @@ export class Reminder {
  * This information will be sent to the API and stored.
  */
 export class CreateReminderInformation {
-    userId: String;
-    userName: String;
-    name: String;
-    description: String;
-    isPublic: Boolean;
-    repeats: Boolean;
+    userID: string;
+    userName: string;
+    name: string;
+    description: string;
+    isPublic: boolean;
+    repeats: boolean;
     dueDate: Date;
-    lat?: Number;
-    lng?: Number;
-    completionMethod?: String
+    lat?: number;
+    lng?: number;
+    completionMethod?: string
 }
 
 export class CreateReminderResponse {
-    success: Boolean;
-    msg: String;
+    success: boolean;
+    msg: string;
     // Not sure what is the appropriate response,
     // maybe some event data so we can confirm insertion and display it?
-    eventId?: String;
+    eventId?: string;
     event?: any;
 }

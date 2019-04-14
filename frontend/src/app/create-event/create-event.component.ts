@@ -32,9 +32,9 @@ export class CreateEventComponent implements OnInit {
     isRepeating: new FormControl(false)
   });
 
-  private _success = new Subject<String>();
-  success: Boolean;
-  message: String;
+  private _success = new Subject<string>();
+  success: boolean;
+  message: string;
 
   constructor(private authService: AuthenticationService,
     private eventService: EventService,
@@ -57,7 +57,7 @@ export class CreateEventComponent implements OnInit {
 
   onSubmit() {
     const eventInformation: CreateReminderInformation = {
-      userId: this.authService.getUser().id,
+      userID: this.authService.getUser().id,
       userName: this.authService.getUser().username,
       // Events are public only, pls confirm
       isPublic: true,

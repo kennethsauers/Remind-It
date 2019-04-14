@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     ])
   });
   
-  private _error = new Subject<String>();
-  message: String;
+  private _error = new Subject<string>();
+  message: string;
 
   /**
    * @params authService AuthenticationService injection

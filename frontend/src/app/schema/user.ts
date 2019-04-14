@@ -6,8 +6,8 @@
  */
 export class User {
   // Essentials for authentication
-  id: String;
-  username: String;
+  id: string;
+  username: string;
 
   // anything beyond this might need an elvis operator
 }

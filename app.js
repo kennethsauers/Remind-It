@@ -51,7 +51,7 @@ mongoose.connection.on('error', (err) => {
 
 // Backend initialization and definition.
 const app = express();                             // Initialize Express
-const port = normPort(process.env.PORT || '3000'); // Define port to listen on.
+const port = normPort(process.env.PORT || '8080'); // Define port to listen on.
 app.set('port', port);
 app.use(cors());                                   // Initialize CORS
 app.use(bodyParser.json());                        // Initialize Body Parser
@@ -75,16 +75,16 @@ app.get('*', (req, res) => {
 });
 
 // Starts server
-//app.listen(3000, () => {
-//  console.log("HTTP server started on port 3000.");
-//});
+app.listen(port, () => {
+  console.log("HTTP server started on port " + port);
+});
 
 // When deploying, uncomment everything below and comment out the above
 // app.listen() code.
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
-.listen(443, () => {
-  console.log("HTTPS server started on port 443.");
-});
+//https.createServer({
+//  key: fs.readFileSync('server.key'),
+//  cert: fs.readFileSync('server.cert')
+//}, app)
+//.listen(443, () => {
+//  console.log("HTTPS server started on port 443.");
+//});

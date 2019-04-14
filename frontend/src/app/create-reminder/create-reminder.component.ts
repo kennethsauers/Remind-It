@@ -72,6 +72,10 @@ export class CreateReminderComponent implements OnInit {
     this.eventService.addReminder(this.authService.getToken(), reminderInformation).subscribe((res: CreateReminderResponse) => {
       this.success = res.success;
       this._success.next(res.msg);
+
+      if(this.success) {
+        this.activeModal.close(this.success);
+      }
     });
   }
 }

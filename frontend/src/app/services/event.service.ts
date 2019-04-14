@@ -14,6 +14,7 @@ export class EventService {
   //readonly ApiUrl = 'https://themeanteam.site/events/';
 
   public onEventLoad: EventEmitter<Reminder> = new EventEmitter<Reminder>();
+  public onEventListLoad: EventEmitter<Reminder[]> = new EventEmitter<Reminder[]>();
 
   /**
    * @param http HttpClient injection to make API requests
@@ -56,18 +57,18 @@ export class EventService {
     return this.getEvents('my', token);
   }
 
-  getPublicEvents(token: string): Observable<Reminder[]> {
+  getPublicEvents(token: string) {
     return this.getEvents('all', token);
   }
 
-  public getEvents(kind: string, token: string): Observable<Reminder[]> {
+  public getEvents(kind: string, token: string) {
     const HttpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': token
       })
     };
-    
+
     return this.http.get<Reminder[]>(this.ApiUrl + 'get/' + kind, HttpOptions).pipe(      
       map((data: any[]) => data.map((item: any) => new Reminder(
         item.name,
@@ -75,6 +76,13 @@ export class EventService {
         item.dueDate,
         item._id
       )))
-    );
+    ).subscribe(events => {
+      if (events != null) {
+        this.onEventListLoad.emit(events);
+      }
+      }, err => {
+      console.log(err);
+      return false;
+    });
   }
 }

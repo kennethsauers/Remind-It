@@ -11,23 +11,24 @@ import { CreateEventComponent } from '../create-event/create-event.component';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+  eventWatcher;
   public events: Reminder[];
   selectedRow: number;
   onClickedEvent: Function;
 
   constructor(private modalService: NgbModal,
     private eventService: EventService,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService) {
+    this.eventWatcher = this.eventService.onEventListLoad.subscribe({
+      next: (events: Reminder[]) => {
+        this.events = events;
+      }
+    });
+  }
 
   ngOnInit() {
-    this.eventService.getPublicEvents(this.authService.getToken()).subscribe(newEvents => {
-      this.events = newEvents
-    }, err => {
-      console.log(err);
-      return false;
-    });
-
-    this.onClickedEvent = (index) => {
+    this.refreshData();
+    this.onClickedEvent = (index: number) => {
       if (this.selectedRow != index) {
         this.selectedRow = index;
         this.eventService.getEventInformation(this.authService.getToken(), 
@@ -35,8 +36,11 @@ export class EventsComponent implements OnInit {
       }
     }
   }
-
+  refreshData() {
+    this.eventService.getPublicEvents(this.authService.getToken());
+  }
   createEvent() {
     const modalRef = this.modalService.open(CreateEventComponent);
+    modalRef.result.then(() => this.refreshData());
   }
 }

@@ -9,6 +9,9 @@
 <!-- sets up a row of two columns -->
 <div class='row'>
     <div id="main" class="column">
+            <h1>Reminders</h1>
+            <button type="button" class="btn btn-success" (click)="createEvent()">New Event</button>
+            <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -25,7 +28,6 @@
                 </tr>
             </tbody>
         </table>
-        <button type="button" class="btn btn-success" (click)="createEvent()">Create Event</button>
     </div>
     <!-- other column has maps and the reminders stuff on the right side of webpage -->
     <div id="side" class="column">

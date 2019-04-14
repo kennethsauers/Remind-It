@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { CreateReminderInformation, CreateReminderResponse, Reminder } from '../schema/reminders';
+import { CreateReminderInformation, CreateReminderResponse, Reminder, UpdateEventResponse } from '../schema/reminders';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -34,6 +34,25 @@ export class EventService {
       })
     };
     return this.http.post<CreateReminderResponse>(this.ApiUrl + 'create', reminder, HttpOptions);
+  }
+
+  updateEvent(token: string, event: Reminder) {
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    this.http.put<UpdateEventResponse>(this.ApiUrl + 'update/' + event._id, event, HttpOptions).subscribe(res => {
+        if (res.success) {
+          // Update event and event list caches
+          this.onEventLoad.emit(event);
+          this.getMyReminders(token);
+        }
+      }, err => {
+      console.log(err);
+      return false;
+    });
   }
 
   getEventInformation(token: string, id: string) {

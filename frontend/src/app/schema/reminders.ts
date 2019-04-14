@@ -35,3 +35,9 @@ export class CreateReminderResponse {
     eventId?: string;
     event?: any;
 }
+
+export class UpdateEventResponse {
+    success: boolean;
+    msg?: string;
+    event?: any;
+}

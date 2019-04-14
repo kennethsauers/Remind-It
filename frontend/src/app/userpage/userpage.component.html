@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h1>Welcome {{ this.user.username }}! </h1>
+<h1>Settings and Preferences</h1>
 <form>
     <fieldset>
         <!-- <legend>Profile Settings</legend>
@@ -20,13 +20,15 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div> -->
         <!-- event settings -->
-        <legend>Map Settings</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" unchecked="">
-            Highlight public events
-            </label>
+        <div class="form-group">
+          <fieldset disabled="">
+            <label class="control-label" for="disabledInput">Change password</label>
+            <input class="form-control" formControlName="name" id="disabledInput" type="text" placeholder="">
+            <label class="control-label" for="disabledInput">Confirm new password</label>
+            <input class="form-control" formControlName="name" id="disabledInput" type="text" placeholder="">
+          </fieldset>
         </div>
+        <button type="button" class="btn btn-success">Submit new password</button>
         <div class="form-check disabled">
             <label class="form-check-label">
             <input class="form-check-input" type="checkbox" value="" unchecked="">

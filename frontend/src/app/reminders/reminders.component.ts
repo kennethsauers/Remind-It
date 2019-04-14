@@ -12,6 +12,8 @@ import { Reminder } from '../schema/reminders';
 })
 export class RemindersComponent implements OnInit {
   public reminders: Reminder[];
+  selectedRow: number;
+  onClickedEvent: Function;
 
   constructor(private modalService: NgbModal,
               private eventService: EventService,
@@ -24,6 +26,14 @@ export class RemindersComponent implements OnInit {
       console.log(err);
       return false;
     });
+
+    this.onClickedEvent = (index) => {
+      if (this.selectedRow != index) {
+        this.selectedRow = index;
+        this.eventService.getEventInformation(this.authService.getToken(), 
+          this.reminders[index]._id);
+      }
+    }
   }
 
   createReminder() {

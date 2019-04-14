@@ -17,10 +17,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white" *ngFor="let reminder of reminders">
-                    <th>{{reminder.name}}</th>
-                    <th>{{reminder.description}}</th>
-                    <th>{{reminder.dueDate | date: 'medium'}}</th>
+                <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow">
+                    <td>{{reminder.name}}</td>
+                    <td>{{reminder.description}}</td>
+                    <td>{{reminder.dueDate | date: 'medium'}}</td>
                 </tr>
             </tbody>
         </table>

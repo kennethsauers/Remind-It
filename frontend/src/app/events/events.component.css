@@ -8,3 +8,8 @@
   width:49%;
   background-color: #253238;
 }
+
+.table tr.active td {
+  background-color:#123456 !important;
+  color: white;
+}

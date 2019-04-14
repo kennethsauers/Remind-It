@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { CreateReminderInformation, CreateReminderResponse, Reminder } from '../schema/reminders';
@@ -13,6 +13,8 @@ export class EventService {
   readonly ApiUrl = 'http://localhost:3000/events/';
   //readonly ApiUrl = 'https://themeanteam.site/events/';
 
+  public onEventLoad: EventEmitter<Reminder> = new EventEmitter<Reminder>();
+
   /**
    * @param http HttpClient injection to make API requests
    */
@@ -25,12 +27,29 @@ export class EventService {
     */
    addReminder(token: string, reminder: CreateReminderInformation) {
     const HttpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': token
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
       })
     };
     return this.http.post<CreateReminderResponse>(this.ApiUrl + 'create', reminder, HttpOptions);
+  }
+
+  getEventInformation(token: string, id: string) {
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    this.http.get<Reminder>(this.ApiUrl + 'get/id/' + id, HttpOptions).subscribe(event => {
+      if (event.name != null) {
+        this.onEventLoad.emit(event);
+      }
+      }, err => {
+      console.log(err);
+      return false;
+    });
   }
 
   getMyReminders(token: string) {
@@ -48,7 +67,7 @@ export class EventService {
         'Authorization': token
       })
     };
-
+    
     return this.http.get<Reminder[]>(this.ApiUrl + 'get/' + kind, HttpOptions).pipe(      
       map((data: any[]) => data.map((item: any) => new Reminder(
         item.name,

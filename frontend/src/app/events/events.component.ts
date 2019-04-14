@@ -12,6 +12,8 @@ import { CreateEventComponent } from '../create-event/create-event.component';
 })
 export class EventsComponent implements OnInit {
   public events: Reminder[];
+  selectedRow: number;
+  onClickedEvent: Function;
 
   constructor(private modalService: NgbModal,
     private eventService: EventService,
@@ -24,6 +26,14 @@ export class EventsComponent implements OnInit {
       console.log(err);
       return false;
     });
+
+    this.onClickedEvent = (index) => {
+      if (this.selectedRow != index) {
+        this.selectedRow = index;
+        this.eventService.getEventInformation(this.authService.getToken(), 
+          this.events[index]._id);
+      }
+    }
   }
 
   createEvent() {

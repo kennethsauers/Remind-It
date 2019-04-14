@@ -18,10 +18,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white" *ngFor="let event of events">
-                    <th>{{event.name}}</th>
-                    <th>{{event.description}}</th>
-                    <th>{{event.dueDate | date: 'medium'}}</th>
+                <tr style="color:white" *ngFor="let event of events; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow">
+                    <td>{{event.name}}</td>
+                    <td>{{event.description}}</td>
+                    <td>{{event.dueDate | date: 'medium'}}</td>
                 </tr>
             </tbody>
         </table>

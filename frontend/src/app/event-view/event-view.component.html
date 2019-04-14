@@ -1,17 +1,15 @@
 <div class="container">
   <article class="card-body mx-auto" style="max-width: mx-auto">
     <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
-    <h4 class="card-title mb-4 mt-1">Events</h4>
-    <form (ngSubmit)="saveUpdate()">
+    <h2 class="card-title mb-4 mt-1">Event Viewer</h2>
+    <form [formGroup]="eventViewForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="exampleTextarea">Beep</label>
-        <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
-
-        <label for="exampleTextarea">Bop</label>
-        <textarea class="form-control" id="exampleTextarea" rows="1"></textarea>
-
-        <label for="exampleTextarea">Boop</label>
-        <textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
+        <fieldset disabled="">
+          <label class="control-label" for="disabledInput">Name</label>
+          <input class="form-control" formControlName="name" id="disabledInput" type="text" placeholder="">
+          <label for="exampleTextarea">Description</label>
+          <textarea class="form-control" formControlName="description" id="exampleTextarea"  rows="5"></textarea>
+        </fieldset>
       </div>
     </form>
   </article>

@@ -7,7 +7,6 @@
 // Create event
 // Remember to set up bearer token in the auth part.
 {
-    "userName": "testaccount",
     "userID": "5c9fc7fdc733090cd86ef743",
     "isPublic": false,
     "name": "Test Event",
@@ -15,31 +14,45 @@
     "lat": 0,
     "lng": 0,
     "repeats": false,
+    "repeatUnit": "week",
+    "repeatConst": 1,
     "dueDate": 0,
-    "completionMethod": "To be defined."
+    "mustBeNear": false,
+    "isComplete": false
 }
 
+// Read event
 // Find events by userID.
 {
   "_id": "5c9fc7fdc733090cd86ef743"
 }
 
+// Read event
 // Find all public events.
 {
   "isPublic": true
 }
 
+// Update event
 // Update an already-existing event form.
 {
     "_id": "5c9fc9eb57c4420d28a8bd65",
-    "userName": "testaccount",
     "userID": "5c9fc7fdc733090cd86ef743",
     "isPublic": false,
-    "name": "Test Event Updated",
+    "name": "Test Event 2",
     "description": "A sample event updated through direct API calls.",
-    "lat": 0,
-    "lng": 0,
-    "repeats": false,
-    "dueDate": 0,
-    "completionMethod": "To be defined."
+    "lat": 1,
+    "lng": 1,
+    "repeats": true,
+    "repeatUnit": "month",
+    "repeatConst": 1,
+    "dueDate": 1,
+    "mustBeNear": true,
+    "isComplete": false
+}
+
+// Delete event
+// Delete an event object.
+{
+  "_id": "5c9fc9eb57c4420d28a8bd65"
 }

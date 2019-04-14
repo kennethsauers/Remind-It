@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white" *ngFor="let event of events; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow">
+                <tr style="color:white" *ngFor="let event of events; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow" [className]="getClass(i)">
                     <td>{{event.name}}</td>
                     <td>{{event.description}}</td>
                     <td>{{event.dueDate | date: 'medium'}}</td>

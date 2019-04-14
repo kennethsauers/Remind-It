@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow">
+                <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow" [className]="getClass(i)">
                     <td>{{reminder.name}}</td>
                     <td>{{reminder.description}}</td>
                     <td>{{reminder.dueDate | date: 'medium'}}</td>

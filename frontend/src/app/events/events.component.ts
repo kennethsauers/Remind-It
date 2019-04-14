@@ -12,6 +12,7 @@ import { CreateEventComponent } from '../create-event/create-event.component';
 })
 export class EventsComponent implements OnInit {
   eventWatcher;
+  today: Date = new Date();
   public events: Reminder[];
   selectedRow: number;
   onClickedEvent: Function;
@@ -42,5 +43,35 @@ export class EventsComponent implements OnInit {
   createEvent() {
     const modalRef = this.modalService.open(CreateEventComponent);
     modalRef.result.then(() => this.refreshData());
+  }
+
+  dateCompare (then: Date, now: Date): number {
+    var a: Date = new Date (then.getFullYear(), then.getMonth(), then.getDate());
+    var b: Date = new Date (now.getFullYear(), now.getMonth(), now.getDate());
+
+    // this is today
+    if (a.getDate() == b.getDate() && a.getMonth() == b.getMonth() && a.getFullYear() == b.getFullYear())
+      return 0;
+    // This was yesterday
+    else if (a < b)
+      return -1;
+    // this is in the future
+    else if (a > b)
+      return 1;
+  }
+
+  getClass(index: number): string {
+    const event: Reminder = this.events[index];
+    const then = new Date(event.dueDate)
+    
+    console.log(this.dateCompare(then, this.today))
+    if (this.dateCompare(then, this.today) == 0) {
+      return "table-secondary";
+    } else if (this.dateCompare(then, this.today) > 0) {
+      return "table-default"
+    } else {
+      // We basically shouldn't even receive old sponsored events.
+      return "hidden";
+    }
   }
 }

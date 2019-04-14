@@ -17,6 +17,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/databaseconfig');
 const User = require('../models/usermodel');
+const Event = require('../models/eventmodel');
 
 // Register user
 router.post('/reg', (req, res, next) => {
@@ -47,6 +48,7 @@ router.post('/reg', (req, res, next) => {
 router.post('/auth', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const isMobile = req.body.mobile != null;
 
   User.getUserByUsername(username, (err, user) => {
     if (err) throw err;
@@ -60,15 +62,31 @@ router.post('/auth', (req, res, next) => {
         const token = jwt.sign({ data: user }, config.secret, {
           expiresIn: 604800 // 1 week
         });
-
-        res.json({
-          success: true,
-          token: 'Bearer ' + token,
-          user: {
-            id: user._id,
-            username: user.username
-          }
-        });
+        
+        if (isMobile) {
+          Event.getEventsByUserID(user._id, (err, events) => {
+            if (!err) {
+              res.json({
+                success: true,
+                token: 'Bearer ' + token,
+                user: {
+                  id: user._id,
+                  username: user.username,
+                  reminders: events
+                }
+              });
+            }
+          });
+        } else {
+          res.json({
+            success: true,
+            token: 'Bearer ' + token,
+            user: {
+              id: user._id,
+              username: user.username
+            }
+          });
+        }
       } else {
         return res.json({ success: false, msg: 'Wrong password' });
       }

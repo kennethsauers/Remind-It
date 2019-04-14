@@ -25,7 +25,7 @@ const Event = require('../models/eventmodel');
 router.post('/create', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   let newEvent = new Event({
     userName:         req.body.userName,
-    userID:           req.body.userID,
+    userID:           req.body.userId,
     isPublic:         req.body.isPublic,
     name:             req.body.name,
     description:      req.body.description,
@@ -45,6 +45,25 @@ router.post('/create', passport.authenticate('jwt', { session: false }), (req, r
   });
 });
 
+router.get('/get/my', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  Event.getEventsByUserID(req.user._id, (err, events) => {
+    if (err) {
+      res.json({ success: false, msg: "Failed to get events by user ID."});
+    } else {
+      res.json(events)
+    }
+  });
+});
+
+router.get('/get/all', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  Event.getPublicEvents((err, events) => {
+    console.log(err);
+    if (err)
+      res.json({success: false, msg: "Failed to get public events."});
+    else
+      res.json(events)
+  });
+});
 
 // Read event
 router.get('/read', passport.authenticate('jwt', { session: false }), (req, res, next) => {

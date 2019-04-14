@@ -1,3 +1,14 @@
+export class Reminder {
+    constructor(public name: String,
+        public description: String,
+        public dueDate: Date,
+        public _id?: String,
+        public userID?: String,
+        public lat?: Number,
+        public lng?: Number,
+        public repeats?: Boolean,
+        completionMethod?: String) { }
+}
 
 /**
  * Class that will hold the Reminder data once one is created.

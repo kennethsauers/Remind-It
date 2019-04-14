@@ -16,7 +16,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="createEventForm" (ngSubmit)="onSubmit()">
     <div class="modal-body">
       <div class="form-group">
         <input class="form-control" placeholder="Name" type="text" formControlName="name" required maxlength="32">
@@ -41,7 +41,7 @@
     </div> <!-- modal-body-->
     <div class="modal-footer align-items-center">
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="!createReminderForm.valid">Create Reminder</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!createEventForm.valid">Create Event</button>
       </div> <!-- form-group// -->
     </div> <!-- modal footer -->
   </form><!-- form-->

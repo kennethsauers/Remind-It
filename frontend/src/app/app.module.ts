@@ -18,6 +18,7 @@ import { EventsComponent } from './events/events.component';
 import { MapsComponent } from './maps/maps.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { CreateReminderComponent } from './create-reminder/create-reminder.component';
+import { CreateEventComponent } from './create-event/create-event.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CreateReminderComponent } from './create-reminder/create-reminder.compo
     EventsComponent,
     MapsComponent,
     RemindersComponent,
-    CreateReminderComponent
+    CreateReminderComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,6 @@ import { CreateReminderComponent } from './create-reminder/create-reminder.compo
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateReminderComponent]
+  entryComponents: [CreateReminderComponent, CreateEventComponent]
 })
 export class AppModule { }

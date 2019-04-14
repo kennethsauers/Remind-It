@@ -14,9 +14,6 @@ const mongoose = require('mongoose');
 
 // Defining the schema.
 const EventSchema = mongoose.Schema({
-  userName:{
-    type: String
-  },
   userID: {
     type: String
   },
@@ -65,8 +62,8 @@ module.exports.getEventsByUserID = function(userID, callback) {
 }
 
 // READ: Find all public events
-module.exports.getPublicEvents = function(isPublic, callback) {
-  const query = { isPublic: isPublic };
+module.exports.getPublicEvents = function(callback) {
+  const query = { isPublic: true };
   Event.find(query, callback);
 }
 

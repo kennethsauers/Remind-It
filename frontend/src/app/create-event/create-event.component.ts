@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
-
-import { CreateReminderInformation, CreateReminderResponse } from '../schema/reminders';
+import { Subject } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { EventService } from '../services/event.service';
-import { Subject } from 'rxjs';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
+import { CreateReminderInformation, CreateReminderResponse } from '../schema/reminders';
 
 @Component({
-  selector: 'app-create-reminder',
-  templateUrl: './create-reminder.component.html',
-  styleUrls: ['./create-reminder.component.css']
+  selector: 'app-create-event',
+  templateUrl: './create-event.component.html',
+  styleUrls: ['./create-event.component.css']
 })
-export class CreateReminderComponent implements OnInit {
+export class CreateEventComponent implements OnInit {
   openedDate: Date = new Date();
-  createReminderForm = new FormGroup({
+  createEventForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.maxLength(32)
@@ -57,19 +56,19 @@ export class CreateReminderComponent implements OnInit {
   }
 
   onSubmit() {
-    const reminderInformation: CreateReminderInformation = {
+    const eventInformation: CreateReminderInformation = {
       userId: this.authService.getUser().id,
       userName: this.authService.getUser().username,
-      // Reminders are private only, pls confirm
-      isPublic: false,
-      repeats: this.createReminderForm.get('isRepeating').value,
-      name: this.createReminderForm.get('name').value,
-      description: this.createReminderForm.get('description').value,
-      dueDate: this.getDateFromPicker(this.createReminderForm.get('dueDate').value,
-        this.createReminderForm.get('time').value)
+      // Events are public only, pls confirm
+      isPublic: true,
+      repeats: this.createEventForm.get('isRepeating').value,
+      name: this.createEventForm.get('name').value,
+      description: this.createEventForm.get('description').value,
+      dueDate: this.getDateFromPicker(this.createEventForm.get('dueDate').value,
+        this.createEventForm.get('time').value)
     };
 
-    this.eventService.addReminder(this.authService.getToken(), reminderInformation).subscribe((res: CreateReminderResponse) => {
+    this.eventService.addReminder(this.authService.getToken(), eventInformation).subscribe((res: CreateReminderResponse) => {
       this.success = res.success;
       this._success.next(res.msg);
     });

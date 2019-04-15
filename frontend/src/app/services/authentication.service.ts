@@ -12,8 +12,13 @@ import { User } from '../schema/user';
 })
 export class AuthenticationService {
   /// TODO: Change according to your setup
+<<<<<<< HEAD
   readonly ApiUrl = 'https://remind-it-236717.appspot.com/users/';
   //readonly ApiUrl = 'https://themeanteam.site/users';
+=======
+  readonly ApiUrl = 'https://35.237.156.54:8080/users/';
+  //readonly ApiUrl = 'https://themeanteam.site/users/';
+>>>>>>> e5a0b72c8ce8bfd48da7de454a65b7a4271da29b
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);
 

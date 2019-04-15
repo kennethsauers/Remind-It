@@ -10,7 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
   /// TODO: Change according to your setup
+<<<<<<< HEAD
   readonly ApiUrl = 'https://remind-it-236717.appspot.com/events/';
+=======
+  readonly ApiUrl = 'https://35.237.156.54:8080/events/';
+  //readonly ApiUrl = 'http://localhost:8080/events/';
+>>>>>>> e5a0b72c8ce8bfd48da7de454a65b7a4271da29b
   //readonly ApiUrl = 'https://themeanteam.site/events/';
 
   public onEventLoad: EventEmitter<Reminder> = new EventEmitter<Reminder>();

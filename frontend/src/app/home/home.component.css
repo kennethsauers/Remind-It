@@ -1,8 +1,12 @@
 /* dont touch the css!!! -.- aligns perfectly with edge of page */
 #left{
-    width:50%;
+    width: 48%;
+    padding-left:1%;
+    padding-right:1%;
 }
 
 #right{
-    width:50%;
+    width:47%;
+    padding-left:1%;
+    padding-right:1%;
 }

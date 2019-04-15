@@ -3,7 +3,7 @@
     <span class="ml-3" *ngIf="reminderService.loading$ | async">Loading...</span>
 </div> -->
 <!-- sets up a row of two columns -->
-<div class='row'>
+<div class='row' style="max-width: 100%">
     <div id="main" class="column">
         <h1>Reminders</h1>
         <button type="button" class="btn btn-success" (click)="createReminder()">New Reminder</button>
@@ -11,9 +11,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col" sortable="name">Name</th>
-                    <th scope="col" sortable="description">Description</th>
-                    <th scope="col" sortable="dueDate">Due</th>
+                    <th scope="col" sortable="name" style="width:20%;">Name</th>
+                    <th scope="col" sortable="description" style="width:50%;">Description</th>
+                    <th scope="col" sortable="dueDate" style="width:30%;">Due</th>
                 </tr>
             </thead>
             <tbody>

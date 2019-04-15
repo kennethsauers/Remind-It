@@ -58,7 +58,6 @@ export class RemindersComponent implements OnInit {
     const reminder: Reminder = this.reminders[index];
     const then = new Date(reminder.dueDate)
     
-    console.log(this.dateCompare(then, this.today))
     if (this.dateCompare(then, this.today) == 0) {
       return "table-secondary";
     } else if (this.dateCompare(then, this.today) < 0) {

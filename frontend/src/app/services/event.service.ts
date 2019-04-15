@@ -90,10 +90,19 @@ export class EventService {
 
     return this.http.get<Reminder[]>(this.ApiUrl + 'get/' + kind, HttpOptions).pipe(      
       map((data: any[]) => data.map((item: any) => new Reminder(
+        item._id,
+        item.userID,
+        item.isPublic,
         item.name,
         item.description,
         item.dueDate,
-        item._id
+        item.repeats,
+        item.isComplete,
+        item.lat,
+        item.lng,
+        item.repeatUnit,
+        item.repeatConst,
+        item.mustBeNear
       )))
     ).subscribe(events => {
       if (events != null) {

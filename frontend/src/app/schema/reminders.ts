@@ -1,13 +1,17 @@
 export class Reminder {
-    constructor(public name: string,
+    constructor(public _id: string,
+        public userID: string,
+        public isPublic: boolean,
+        public name: string,
         public description: string,
         public dueDate: Date,
-        public _id?: string,
-        public userID?: string,
+        public repeats: boolean,
+        public isComplete: boolean,
         public lat?: number,
         public lng?: number,
-        public repeats?: boolean,
-        completionMethod?: string) { }
+        public repeatUnit?: string,
+        public repeatConst?: number,
+        public mustBeNear?: boolean) { }
 }
 
 /**
@@ -16,15 +20,17 @@ export class Reminder {
  */
 export class CreateReminderInformation {
     userID: string;
-    userName: string;
+    isPublic: boolean;
     name: string;
     description: string;
-    isPublic: boolean;
-    repeats: boolean;
     dueDate: Date;
+    repeats: boolean;
+    isComplete: boolean;
     lat?: number;
     lng?: number;
-    completionMethod?: string
+    repeatUnit?: string;
+    repeatConst?: number;
+    mustBeNear?: boolean;
 }
 
 export class CreateReminderResponse {

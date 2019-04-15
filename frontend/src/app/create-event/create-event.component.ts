@@ -14,6 +14,12 @@ import { CreateReminderInformation, CreateReminderResponse } from '../schema/rem
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
+  repeatingFrequencies = [
+    { name: "Select an option...", value: "" },
+    { name: "Daily", value: "day" },
+    { name: "Weekly", value: "week" },
+    { name: "Monthly", value: "month" }
+  ]
   openedDate: Date = new Date();
   createEventForm = new FormGroup({
     name: new FormControl('', [
@@ -29,7 +35,10 @@ export class CreateEventComponent implements OnInit {
       Validators.maxLength(16)
     ]),
     time: new FormControl({ hour: this.openedDate.getHours(), minute: this.openedDate.getMinutes(), second: 0 }, Validators.maxLength(16)),
-    isRepeating: new FormControl(false)
+    isRepeating: new FormControl(false),
+    mustBeNear: new FormControl(false),
+    repeatUnit: new FormControl(this.repeatingFrequencies[0].value),
+    repeatConst: new FormControl(1)
   });
 
   private _success = new Subject<string>();
@@ -58,14 +67,20 @@ export class CreateEventComponent implements OnInit {
   onSubmit() {
     const eventInformation: CreateReminderInformation = {
       userID: this.authService.getUser().id,
-      userName: this.authService.getUser().username,
-      // Events are public only, pls confirm
-      isPublic: true,
-      repeats: this.createEventForm.get('isRepeating').value,
+      // Reminders are private only, pls confirm
+      isPublic: false,
+      isComplete: false,
       name: this.createEventForm.get('name').value,
       description: this.createEventForm.get('description').value,
       dueDate: this.getDateFromPicker(this.createEventForm.get('dueDate').value,
-        this.createEventForm.get('time').value)
+        this.createEventForm.get('time').value),
+      repeats: this.createEventForm.get('isRepeating').value,
+      repeatUnit: this.createEventForm.get('repeatUnit').value,
+      mustBeNear: this.createEventForm.get('mustBeNear').value,
+      repeatConst: this.createEventForm.get('repeatConst').value,
+      /// TODO: Add location stuff
+      lat: 0,
+      lng: 0,
     };
 
     this.eventService.addReminder(this.authService.getToken(), eventInformation).subscribe((res: CreateReminderResponse) => {

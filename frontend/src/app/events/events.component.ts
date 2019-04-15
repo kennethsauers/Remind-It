@@ -63,8 +63,7 @@ export class EventsComponent implements OnInit {
   getClass(index: number): string {
     const event: Reminder = this.events[index];
     const then = new Date(event.dueDate)
-    
-    console.log(this.dateCompare(then, this.today))
+
     if (this.dateCompare(then, this.today) == 0) {
       return "table-secondary";
     } else if (this.dateCompare(then, this.today) > 0) {

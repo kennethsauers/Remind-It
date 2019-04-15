@@ -15,6 +15,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./create-reminder.component.css']
 })
 export class CreateReminderComponent implements OnInit {
+  repeatingFrequencies = [
+    { name: "Select an option...", value: "" },
+    { name: "Daily", value: "day" },
+    { name: "Weekly", value: "week" },
+    { name: "Monthly", value: "month" }
+  ]
+
   openedDate: Date = new Date();
   createReminderForm = new FormGroup({
     name: new FormControl('', [
@@ -30,7 +37,10 @@ export class CreateReminderComponent implements OnInit {
       Validators.maxLength(16)
     ]),
     time: new FormControl({ hour: this.openedDate.getHours(), minute: this.openedDate.getMinutes(), second: 0 }, Validators.maxLength(16)),
-    isRepeating: new FormControl(false)
+    isRepeating: new FormControl(false),
+    mustBeNear: new FormControl(false),
+    repeatUnit: new FormControl(this.repeatingFrequencies[0].value),
+    repeatConst: new FormControl(1)
   });
 
   private _success = new Subject<string>();
@@ -59,14 +69,20 @@ export class CreateReminderComponent implements OnInit {
   onSubmit() {
     const reminderInformation: CreateReminderInformation = {
       userID: this.authService.getUser().id,
-      userName: this.authService.getUser().username,
       // Reminders are private only, pls confirm
       isPublic: false,
-      repeats: this.createReminderForm.get('isRepeating').value,
+      isComplete: false,
       name: this.createReminderForm.get('name').value,
       description: this.createReminderForm.get('description').value,
       dueDate: this.getDateFromPicker(this.createReminderForm.get('dueDate').value,
-        this.createReminderForm.get('time').value)
+        this.createReminderForm.get('time').value),
+      repeats: this.createReminderForm.get('isRepeating').value,
+      repeatUnit: this.createReminderForm.get('repeatUnit').value,
+      mustBeNear: this.createReminderForm.get('mustBeNear').value,
+      repeatConst: this.createReminderForm.get('repeatConst').value,
+      /// TODO: Add location stuff
+      lat: 0,
+      lng: 0,
     };
 
     this.eventService.addReminder(this.authService.getToken(), reminderInformation).subscribe((res: CreateReminderResponse) => {

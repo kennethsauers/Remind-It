@@ -45,7 +45,7 @@ export class ReminderViewComponent {
       newEvent.description = this.reminderViewForm.get('description').value;
 
       this.eventService.updateEvent(this.authService.getToken(), newEvent);
-      
+
       this.reminderViewForm.get('name').disable();
       this.reminderViewForm.get('description').disable();
     } else {
@@ -56,6 +56,8 @@ export class ReminderViewComponent {
   }
 
   getCopy(): Reminder {
-    return new Reminder(this.reminder.name, this.reminder.description, this.reminder.dueDate, this.reminder._id, this.reminder.userID, this.reminder.lat, this.reminder.lng, this.reminder.repeats, "")
+    return new Reminder(this.reminder._id, this.reminder.userID, this.reminder.isPublic, this.reminder.name,
+       this.reminder.description, this.reminder.dueDate, this.reminder.repeats, this.reminder.isComplete, this.reminder.lat,
+       this.reminder.lng, this.reminder.repeatUnit, this.reminder.repeatConst, this.reminder.mustBeNear);
   }
 }

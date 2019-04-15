@@ -12,7 +12,7 @@ import { User } from '../schema/user';
 })
 export class AuthenticationService {
   /// TODO: Change according to your setup
-  readonly ApiUrl = 'http://localhost:3000/users/';
+  readonly ApiUrl = 'https://remind-it-236717.appspot.com/users/';
   //readonly ApiUrl = 'https://themeanteam.site/users';
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);

@@ -72,8 +72,8 @@ app.get('*', (req, res) => {
 });
 
 // Starts server
-app.listen(3000, () => {
-  console.log("HTTP server started on port 3000.");
+app.listen(8080, () => {
+  console.log("HTTP server started on port 8080.");
 });
 
 // When deploying, uncomment everything below and comment out the above

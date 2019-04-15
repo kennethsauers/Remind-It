@@ -3,10 +3,10 @@ A reminder app utilized gps services build for students with busy lives.
 ## Team
 * Kenneth Sauers, Project Manager
 * Misty Au, Project Documentation
+* José Luis, Full Stack Development
 * Kyle Reid, Front End Development
 * Christopher Dowlatram, Front End Development & Mobile Development
 * Mykola Maslych, Mobile Development & Web Deployment
-* José Luis, API Development & Databasing
 * Jorge Nuñez, API Development & Databasing
 ## Technology used
 * MongoDB

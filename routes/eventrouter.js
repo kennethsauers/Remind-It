@@ -106,6 +106,18 @@ router.get('/read', passport.authenticate('jwt', { session: false }), (req, res,
   }
 });
 
+// Redundant read event code for mobile access
+router.get('/read/:userID', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  const userID = req.params.userID;
+  Event.getEventsByUserID(userID, (err, events) => {
+    if (err) {
+      res.json({ success: false, msg: "Failed to get events by user ID." })
+      console.log("Error getting events by user ID: " + err);
+    } else {
+      res.json( events );
+    }
+  });
+});
 
 // Update event
 router.put('/update/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {

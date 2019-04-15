@@ -2,14 +2,51 @@
   <article class="card-body mx-auto" style="max-width: mx-auto">
     <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
     <h2 class="card-title mb-4 mt-1">Event Viewer</h2>
-    <form [formGroup]="eventViewForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="eventViewForm">
       <div class="form-group">
-        <fieldset disabled="">
-          <label class="control-label" for="disabledInput">Name</label>
-          <input class="form-control" formControlName="name" id="disabledInput" type="text" placeholder="">
-          <label for="exampleTextarea">Description</label>
-          <textarea class="form-control" formControlName="description" id="exampleTextarea"  rows="5"></textarea>
-        </fieldset>
+        <label class="control-label" for="eventNameText">Name</label>
+        <input class="form-control" formControlName="name" id="eventNameText" type="text" placeholder="">
+        <label for="descriptionTextArea">Description</label>
+        <textarea class="form-control" formControlName="description" id="descriptionTextArea" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <ngb-timepicker class="col-sm" formControlName="time" [meridian]="true" [size]="small"></ngb-timepicker>
+          <div class="col-sm d-flex align-items-center">
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dueDate" ngbDatepicker
+              #d="ngbDatepicker" (focus)="d.toggle()" required>
+          </div>
+        </div>
+      </div> <!-- form-group-->
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" formControlName="mustBeNear" id="checkBoxNear">
+        <label class="custom-control-label" for="checkBoxNear">Do you have to be near to complete?</label>
+      </div>
+      <br />
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
+          <input type="checkbox" class="custom-control-input" formControlName="isRepeating" id="checkBoxRepeating">
+          <label class="custom-control-label" for="checkBoxRepeating">Does it repeat?</label>
+        </div>
+
+        <div id="collapsedRepeating" [ngbCollapse]="!(eventViewForm.get('isRepeating').value)">
+          <div class="row">
+            <label for="selectPickerRepeat col-md">Choose frequency:</label>
+            <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit"
+              id="selectPickerRepeat">
+              <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <h4>How many times?</h4>
+            <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required
+              maxlength="32">
+          </div> <!-- form-group// -->
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="event == null"
+          (click)="onSubmit()">{{ inEditMode ? "Save Edit" : "Edit Event"}}</button>
       </div>
     </form>
   </article>

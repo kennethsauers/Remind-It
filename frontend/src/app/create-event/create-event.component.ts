@@ -35,8 +35,8 @@ export class CreateEventComponent implements OnInit {
       Validators.maxLength(16)
     ]),
     time: new FormControl({ hour: this.openedDate.getHours(), minute: this.openedDate.getMinutes(), second: 0 }, Validators.maxLength(16)),
-    isRepeating: new FormControl(false),
-    mustBeNear: new FormControl(false),
+    isRepeating: new FormControl({ value:false, disabled: false }),
+    mustBeNear: new FormControl({ value:false, disabled: false }),
     repeatUnit: new FormControl(this.repeatingFrequencies[0].value),
     repeatConst: new FormControl(1)
   });
@@ -68,7 +68,7 @@ export class CreateEventComponent implements OnInit {
     const eventInformation: CreateReminderInformation = {
       userID: this.authService.getUser().id,
       // Reminders are private only, pls confirm
-      isPublic: false,
+      isPublic: true,
       isComplete: false,
       name: this.createEventForm.get('name').value,
       description: this.createEventForm.get('description').value,

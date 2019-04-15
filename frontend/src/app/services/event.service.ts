@@ -46,7 +46,8 @@ export class EventService {
     this.http.put<UpdateEventResponse>(this.ApiUrl + 'update/' + event._id, event, HttpOptions).subscribe(res => {
         if (res.success) {
           // Update event and event list caches
-          this.onEventLoad.emit(event);
+          res.event.dueDate = new Date(res.event.dueDate);
+          this.onEventLoad.emit(res.event);
           this.getMyReminders(token);
         }
       }, err => {
@@ -64,6 +65,7 @@ export class EventService {
     };
     this.http.get<Reminder>(this.ApiUrl + 'get/id/' + id, HttpOptions).subscribe(event => {
       if (event.name != null) {
+        event.dueDate = new Date(event.dueDate);
         this.onEventLoad.emit(event);
       }
       }, err => {
@@ -95,7 +97,7 @@ export class EventService {
         item.isPublic,
         item.name,
         item.description,
-        item.dueDate,
+        new Date(item.dueDate),
         item.repeats,
         item.isComplete,
         item.lat,

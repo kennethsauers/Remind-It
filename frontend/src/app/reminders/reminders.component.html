@@ -4,18 +4,18 @@
 </div> -->
 <!-- sets up a row of two columns -->
 <div class='row' style="max-width:100%;margin-top:1%;">
-  <div id="main" class="column">
-    <div id="top" class="row">
-      <div id="title" class="column" style="width:80%;">
-        <h1>Reminders</h1>
-      </div>
-      <div id="newReminder" class="column">
-        <button type="button" class="btn btn-success" (click)="createReminder()">New reminder</button>
-      </div>
-      <div id="refresh" class="column">
-        <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
-      </div>
-    </div>
+    <div id="main" class="column">
+        <div id="top" class="row">
+            <div id="title" class="column" style="width:80%;">
+                <h1>Reminders</h1>
+            </div>
+            <div id="newReminder" class="column">
+                <button type="button" class="btn btn-success" (click)="createReminder()">New reminder</button>
+            </div>
+            <div id="refresh" class="column">
+                <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -25,11 +25,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white"
-                *ngFor="let reminder of reminders; let i = index"
-                (click)="onClickedEvent(i)"
-                [class.active]="i == selectedRow"
-                [className]="getClass(i)">
+                <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)"
+                    [class.active]="i == selectedRow" [className]="getClass(i)">
                     <td>{{reminder.name}}</td>
                     <td>{{reminder.description}}</td>
                     <td>{{reminder.dueDate | date: 'medium'}}</td>
@@ -39,21 +36,12 @@
     </div>
     <!-- other column has maps and the reminders stuff on the right side of webpage -->
     <div id="side" class="column">
-        <agm-map [zoom]="9"
-                [latitude]="(latitude)"
-                [longitude]="(longitude)">
-            <agm-marker     
-              [iconUrl]="'../../assets/images/youarehere.png'"
-              [latitude]="userLatitude"
-              [longitude]="userLongitude"></agm-marker>
-            <agm-marker
-                *ngFor="let reminder of reminders; let i = index"
-                (markerClick)="onClickedEvent(i)"
-                [iconUrl]="'../../assets/images/event.png'"
-                [latitude]="reminder.lat != null ? reminder.lat : null"
-                [longitude]="reminder.lng != null ? reminder.lng : null"
-
-            ></agm-marker>
+        <agm-map [zoom]="9" [latitude]="(latitude)" [longitude]="(longitude)">
+            <agm-marker [iconUrl]="'../../assets/images/youarehere.png'" [latitude]="userLatitude"
+                [longitude]="userLongitude"></agm-marker>
+            <agm-marker *ngFor="let reminder of reminders; let i = index" (markerClick)="onClickedEvent(i)"
+                [iconUrl]="'../../assets/images/event.png'" [latitude]="reminder.lat != null ? reminder.lat : null"
+                [longitude]="reminder.lng != null ? reminder.lng : null"></agm-marker>
         </agm-map>
         <!--Entire reminders container-->
         <app-reminder-view></app-reminder-view>

@@ -35,32 +35,34 @@
         </div>
       </div> <!-- form-group-->
       <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" formControlName="mustBeNear" id="checkBoxNear">
-          <label class="custom-control-label" for="checkBoxNear">Do you have to be near to complete?</label>
+        <input type="checkbox" class="custom-control-input" formControlName="mustBeNear" id="checkBoxNear">
+        <label class="custom-control-label" for="checkBoxNear">Do you have to be near to complete?</label>
+      </div>
+      <br />
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
+          <input type="checkbox" class="custom-control-input" formControlName="isRepeating" id="checkBoxRepeating">
+          <label class="custom-control-label" for="checkBoxRepeating">Does it repeat?</label>
         </div>
-        <br />
-        <div class="form-group">
-          <div class="custom-control custom-checkbox">
-            <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
-            <input type="checkbox" class="custom-control-input" formControlName="isRepeating" id="checkBoxRepeating">
-            <label class="custom-control-label" for="checkBoxRepeating">Does it repeat?</label>
-          </div>
-  
-          <div id="collapsedRepeating" [ngbCollapse]="!(createEventForm.get('isRepeating').value)">
+
+        <div id="collapsedRepeating" [ngbCollapse]="!(createEventForm.get('isRepeating').value)">
           <div class="row">
             <label for="selectPickerRepeat col-md">Choose frequency:</label>
-            <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit" id="selectPickerRepeat">
+            <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit"
+              id="selectPickerRepeat">
               <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
             </select>
           </div>
-  
+
           <div class="form-group">
-              <h4>How many times?</h4>
-              <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required maxlength="32">
-            </div> <!-- form-group// -->
-          </div>
-  
-        </div><!-- collapsedRepeating -->
+            <h4>How many times?</h4>
+            <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required
+              maxlength="32">
+          </div> <!-- form-group// -->
+        </div>
+
+      </div><!-- collapsedRepeating -->
     </div> <!-- modal-body-->
     <div class="modal-footer align-items-center">
       <div class="form-group">

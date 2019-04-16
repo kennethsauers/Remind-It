@@ -26,7 +26,7 @@ export class EventService {
     * @param token The user's authentication token to authenticate the api call
     * @param reminder CreateReminderInformation object with the reminder data
     */
-   addReminder(token: string, reminder: CreateReminderInformation) {
+  addReminder(token: string, reminder: CreateReminderInformation) {
     const HttpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -44,13 +44,13 @@ export class EventService {
       })
     };
     this.http.put<UpdateEventResponse>(this.ApiUrl + 'update/' + event._id, event, HttpOptions).subscribe(res => {
-        if (res.success) {
-          // Update event and event list caches
-          res.event.dueDate = new Date(res.event.dueDate);
-          this.onEventLoad.emit(res.event);
-          this.getMyReminders(token);
-        }
-      }, err => {
+      if (res.success) {
+        // Update event and event list caches
+        res.event.dueDate = new Date(res.event.dueDate);
+        this.onEventLoad.emit(res.event);
+        this.getMyReminders(token);
+      }
+    }, err => {
       console.log(err);
       return false;
     });
@@ -68,10 +68,10 @@ export class EventService {
         event.dueDate = new Date(event.dueDate);
         event.lat = +event.lat;
         event.lng = +event.lng;
-        
+
         this.onEventLoad.emit(event);
       }
-      }, err => {
+    }, err => {
       console.log(err);
       return false;
     });
@@ -93,7 +93,7 @@ export class EventService {
       })
     };
 
-    return this.http.get<Reminder[]>(this.ApiUrl + 'get/' + kind, HttpOptions).pipe(      
+    return this.http.get<Reminder[]>(this.ApiUrl + 'get/' + kind, HttpOptions).pipe(
       map((data: any[]) => data.map((item: any) => new Reminder(
         item._id,
         item.userID,
@@ -113,7 +113,7 @@ export class EventService {
       if (events != null) {
         this.onEventListLoad.emit(events);
       }
-      }, err => {
+    }, err => {
       console.log(err);
       return false;
     });

@@ -35,8 +35,8 @@ export class CreateEventComponent implements OnInit {
       Validators.maxLength(16)
     ]),
     time: new FormControl({ hour: this.openedDate.getHours(), minute: this.openedDate.getMinutes(), second: 0 }, Validators.maxLength(16)),
-    isRepeating: new FormControl({ value:false, disabled: false }),
-    mustBeNear: new FormControl({ value:false, disabled: false }),
+    isRepeating: new FormControl({ value: false, disabled: false }),
+    mustBeNear: new FormControl({ value: false, disabled: false }),
     repeatUnit: new FormControl(this.repeatingFrequencies[0].value),
     repeatConst: new FormControl(1)
   });
@@ -86,8 +86,8 @@ export class CreateEventComponent implements OnInit {
     this.eventService.addReminder(this.authService.getToken(), eventInformation).subscribe((res: CreateReminderResponse) => {
       this.success = res.success;
       this._success.next(res.msg);
-      
-      if(this.success) {
+
+      if (this.success) {
         this.activeModal.close(this.success);
       }
     });

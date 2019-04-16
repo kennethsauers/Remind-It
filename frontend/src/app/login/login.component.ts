@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       Validators.maxLength(16)
     ])
   });
-  
+
   private _error = new Subject<string>();
   message: string;
 
@@ -32,22 +32,22 @@ export class LoginComponent implements OnInit {
    * @params router Router injection
    */
   constructor(private authService: AuthenticationService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
-    this._error.subscribe( (msg) => { this.message = msg; });
+    this._error.subscribe((msg) => { this.message = msg; });
     this._error.pipe(
       debounceTime(5000)
-    ).subscribe( () => this.message = null );
+    ).subscribe(() => this.message = null);
   }
 
   onSubmit() {
     const userInformation: UserInformation = {
-      username : this.loginForm.get('username').value,
-      password : this.loginForm.get('password').value
+      username: this.loginForm.get('username').value,
+      password: this.loginForm.get('password').value
     };
 
-    this.authService.doLogin(userInformation).subscribe( (res: AuthenticationResponse) => {
+    this.authService.doLogin(userInformation).subscribe((res: AuthenticationResponse) => {
       if (res.success) {
         this.authService.handleAuthenticationResponse(res);
         this.router.navigate(['/userpage']);

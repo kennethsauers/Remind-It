@@ -21,16 +21,16 @@ export class ReminderViewComponent {
   openedDate: Date = new Date();
 
   reminderViewForm = new FormGroup({
-    name: new FormControl({value: '', disabled: true}, [
+    name: new FormControl({ value: '', disabled: true }, [
       Validators.maxLength(32)
     ]),
-    description: new FormControl({value: '', disabled: true}, [
+    description: new FormControl({ value: '', disabled: true }, [
       Validators.maxLength(32767)
     ]),
-    dueDate: new FormControl({value: '', disabled: true}, [
+    dueDate: new FormControl({ value: '', disabled: true }, [
       Validators.maxLength(16)
     ]),
-    time: new FormControl({value: '', disabled: true}, Validators.maxLength(16)),
+    time: new FormControl({ value: '', disabled: true }, Validators.maxLength(16)),
     isRepeating: new FormControl({ value: false, disabled: true }),
     mustBeNear: new FormControl({ value: false, disabled: true }),
     repeatUnit: new FormControl({ value: this.repeatingFrequencies[0].value, disabled: true }),
@@ -47,8 +47,8 @@ export class ReminderViewComponent {
     this.reminderWatcher = eventService.onEventLoad.subscribe({
       next: (event: Reminder) => {
         this.reminder = event;
-        this.reminderViewForm.setValue({ 
-          name: event.name, 
+        this.reminderViewForm.setValue({
+          name: event.name,
           description: event.description,
           dueDate: {
             month: event.dueDate.getMonth() + 1,
@@ -58,13 +58,13 @@ export class ReminderViewComponent {
           time: {
             hour: event.dueDate.getHours(),
             minute: event.dueDate.getMinutes(),
-            second: event.dueDate.getSeconds() 
+            second: event.dueDate.getSeconds()
           },
           isRepeating: event.repeats,
           mustBeNear: event.mustBeNear,
           repeatUnit: event.repeatUnit,
           repeatConst: event.repeatConst
-         });
+        });
       }
     });
   }
@@ -94,14 +94,14 @@ export class ReminderViewComponent {
       this.reminderViewForm.disable();
     } else
       this.reminderViewForm.enable();
-    
-    
+
+
     this.inEditMode = !this.inEditMode;
   }
 
   getCopy(): Reminder {
     return new Reminder(this.reminder._id, this.reminder.userID, this.reminder.isPublic, this.reminder.name,
-       this.reminder.description, this.reminder.dueDate, this.reminder.repeats, this.reminder.isComplete, this.reminder.lat,
-       this.reminder.lng, this.reminder.repeatUnit, this.reminder.repeatConst, this.reminder.mustBeNear);
+      this.reminder.description, this.reminder.dueDate, this.reminder.repeats, this.reminder.isComplete, this.reminder.lat,
+      this.reminder.lng, this.reminder.repeatUnit, this.reminder.repeatConst, this.reminder.mustBeNear);
   }
 }

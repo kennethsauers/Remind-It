@@ -9,9 +9,9 @@
 <!-- sets up a row of two columns -->
 <div class='row'>
     <div id="main" class="column">
-            <h1>Reminders</h1>
-            <button type="button" class="btn btn-success" (click)="createEvent()">New Event</button>
-            <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
+        <h1>Reminders</h1>
+        <button type="button" class="btn btn-success" (click)="createEvent()">New Event</button>
+        <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -21,7 +21,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white" *ngFor="let event of events; let i = index" (click)="onClickedEvent(i)" [class.active]="i == selectedRow" [className]="getClass(i)">
+                <tr style="color:white" *ngFor="let event of events; let i = index" (click)="onClickedEvent(i)"
+                    [class.active]="i == selectedRow" [className]="getClass(i)">
                     <td>{{event.name}}</td>
                     <td>{{event.description}}</td>
                     <td>{{event.dueDate | date: 'medium'}}</td>

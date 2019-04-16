@@ -36,7 +36,7 @@ const EventSchema = mongoose.Schema({
     type: Boolean
   },
   repeatUnit: {
-      type: String
+    type: String
   },
   repeatConst: {
     type: Number
@@ -55,38 +55,38 @@ const EventSchema = mongoose.Schema({
 const Event = module.exports = mongoose.model('Event', EventSchema);
 
 // CREATE: Generate and store a given event in the database.
-module.exports.addEvent = function(newEvent, callback) {
+module.exports.addEvent = function (newEvent, callback) {
   newEvent.save(callback);
 }
 
 // READ: Find an event by id wrapper
-module.exports.getEventByID = function(id, callback) {
+module.exports.getEventByID = function (id, callback) {
   Event.findById(id, callback);
 }
 
 // READ: Find subset of events by user id
-module.exports.getEventsByUserID = function(userID, callback) {
+module.exports.getEventsByUserID = function (userID, callback) {
   const query = { userID: userID };
   Event.find(query, callback);
 }
 
 // READ: Find all public events
-module.exports.getPublicEvents = function(callback) {
+module.exports.getPublicEvents = function (callback) {
   const query = { isPublic: true };
   Event.find(query, callback);
 }
 
 // UPDATE: Overwrite data in a given event.
-module.exports.updateEvent = function(eventID, newEvent, callback) {
-  Event.findOneAndUpdate({_id: eventID}, newEvent, {new: true}, callback);
+module.exports.updateEvent = function (eventID, newEvent, callback) {
+  Event.findOneAndUpdate({ _id: eventID }, newEvent, { new: true }, callback);
 }
 
 // DELETE: Remove an event from the database.
-module.exports.deleteEvent = function(eventID, callback) {
-  Event.deleteOne({_id: eventID}, callback);
+module.exports.deleteEvent = function (eventID, callback) {
+  Event.deleteOne({ _id: eventID }, callback);
 }
 
 // DELETE: Remove all events associated with a given userID.
-module.exports.deleteAllEventsByUserID = function(userID, callback) {
-    Event.deleteMany({userID: userID}, callback);
+module.exports.deleteAllEventsByUserID = function (userID, callback) {
+  Event.deleteMany({ userID: userID }, callback);
 }

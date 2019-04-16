@@ -9,15 +9,15 @@ import { EventService } from '../services/event.service';
   templateUrl: './event-view.component.html',
   styleUrls: ['./event-view.component.css']
 })
-export class EventViewComponent {  
-repeatingFrequencies = [
-  { name: "Select an option...", value: "" },
-  { name: "Daily", value: "day" },
-  { name: "Weekly", value: "week" },
-  { name: "Monthly", value: "month" }
-]
+export class EventViewComponent {
+  repeatingFrequencies = [
+    { name: "Select an option...", value: "" },
+    { name: "Daily", value: "day" },
+    { name: "Weekly", value: "week" },
+    { name: "Monthly", value: "month" }
+  ]
 
-openedDate: Date = new Date();
+  openedDate: Date = new Date();
 
   eventViewForm = new FormGroup({
     name: new FormControl({ value: '', disabled: true }, [
@@ -28,10 +28,10 @@ openedDate: Date = new Date();
       Validators.required,
       Validators.maxLength(32767)
     ]),
-    dueDate: new FormControl({value: '', disabled: true}, [
+    dueDate: new FormControl({ value: '', disabled: true }, [
       Validators.maxLength(16)
     ]),
-    time: new FormControl({value: '', disabled: true}, Validators.maxLength(16)),
+    time: new FormControl({ value: '', disabled: true }, Validators.maxLength(16)),
     isRepeating: new FormControl({ value: false, disabled: true }),
     mustBeNear: new FormControl({ value: false, disabled: true }),
     repeatUnit: new FormControl({ value: this.repeatingFrequencies[0].value, disabled: true }),
@@ -47,8 +47,8 @@ openedDate: Date = new Date();
     this.eventWatcher = eventService.onEventLoad.subscribe({
       next: (event: Reminder) => {
         this.event = event;
-        this.eventViewForm.setValue({ 
-          name: event.name, 
+        this.eventViewForm.setValue({
+          name: event.name,
           description: event.description,
           dueDate: {
             month: event.dueDate.getMonth() + 1,
@@ -58,13 +58,13 @@ openedDate: Date = new Date();
           time: {
             hour: event.dueDate.getHours(),
             minute: event.dueDate.getMinutes(),
-            second: event.dueDate.getSeconds() 
+            second: event.dueDate.getSeconds()
           },
           isRepeating: event.repeats,
           mustBeNear: event.mustBeNear,
           repeatUnit: event.repeatUnit,
           repeatConst: event.repeatConst
-         });
+        });
       }
     });
   }
@@ -94,15 +94,15 @@ openedDate: Date = new Date();
       this.eventViewForm.disable();
     } else
       this.eventViewForm.enable();
-    
-    
+
+
     this.inEditMode = !this.inEditMode;
   }
 
   getCopy(): Reminder {
     return new Reminder(this.event._id, this.event.userID, this.event.isPublic, this.event.name,
-       this.event.description, this.event.dueDate, this.event.repeats, this.event.isComplete, this.event.lat,
-       this.event.lng, this.event.repeatUnit, this.event.repeatConst, this.event.mustBeNear);
+      this.event.description, this.event.dueDate, this.event.repeats, this.event.isComplete, this.event.lat,
+      this.event.lng, this.event.repeatUnit, this.event.repeatConst, this.event.mustBeNear);
   }
 
 }

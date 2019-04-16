@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: UserpageComponent },
-  { path: 'reminders', component: RemindersComponent},
+  { path: 'reminders', component: RemindersComponent },
   { path: 'events', component: EventsComponent },
 
 

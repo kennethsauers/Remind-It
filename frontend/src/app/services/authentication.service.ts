@@ -17,7 +17,7 @@ export class AuthenticationService {
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);
   isLocationDataValid = new BehaviorSubject<boolean>(this.lastLocation != null);
-  
+
   /**
    * @param http HttpClient injection to make API requests
    */
@@ -67,24 +67,24 @@ export class AuthenticationService {
     return this.isLoginSubject.asObservable();
   }
 
-   /**
-    * Makes call to the Api and returns an AuthenticationResponse
-    * @param user UserInformation object with the username and password for API call
-    */
-   doLogin(user: UserInformation) {
+  /**
+   * Makes call to the Api and returns an AuthenticationResponse
+   * @param user UserInformation object with the username and password for API call
+   */
+  doLogin(user: UserInformation) {
     const HttpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
     };
     return this.http.post<AuthenticationResponse>(this.ApiUrl + 'auth', user, HttpOptions);
-   }
+  }
 
-   /**
-    * Handles the returning AuthenticationResponse object from the doLogin() API call
-    * @param res Response data
-    */
-   handleAuthenticationResponse(res: AuthenticationResponse) {
+  /**
+   * Handles the returning AuthenticationResponse object from the doLogin() API call
+   * @param res Response data
+   */
+  handleAuthenticationResponse(res: AuthenticationResponse) {
     if (!res.success) {
       return;
     }

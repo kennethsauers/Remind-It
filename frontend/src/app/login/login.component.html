@@ -9,24 +9,27 @@
 <!--Entire login container-->
 <div class="container">
     <article class="card-body mx-auto" style="max-width: 400px;">
-    <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
-	<a routerLink="/register" class="float-right btn btn-outline-primary">Sign up</a>
-	<h4 class="card-title mb-4 mt-1">Sign in</h4>
-	<hr>
-	<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <input name="" class="form-control" placeholder="Username" type="text" formControlName="username" required maxlength="16">
-    </div> <!-- form-group// -->
-    <div class="form-group">
-        <input class="form-control" placeholder="******" type="password" formControlName="password" required maxlength="16">
-    </div> <!-- form-group// -->
-    <div class="row">
-        <div class="col-md-6">
+        <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
+        <a routerLink="/register" class="float-right btn btn-outline-primary">Sign up</a>
+        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+        <hr>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid"> Login</button>
+                <input name="" class="form-control" placeholder="Username" type="text" formControlName="username"
+                    required maxlength="16">
             </div> <!-- form-group// -->
-        </div>
-    </div> <!-- .row// -->
-</form>
-</article>
+            <div class="form-group">
+                <input class="form-control" placeholder="******" type="password" formControlName="password" required
+                    maxlength="16">
+            </div> <!-- form-group// -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">
+                            Login</button>
+                    </div> <!-- form-group// -->
+                </div>
+            </div> <!-- .row// -->
+        </form>
+    </article>
 </div> <!-- card.// -->

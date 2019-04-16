@@ -48,30 +48,30 @@ export class RegisterComponent implements OnInit {
    * @params router Router injection
    */
   constructor(public authService: AuthenticationService,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
-    this._success.subscribe( (msg) => { this.message = msg });
+    this._success.subscribe((msg) => { this.message = msg });
     this._success.pipe(
       debounceTime(5000)
-    ).subscribe( () => {
+    ).subscribe(() => {
       this.success = null;
     });
-    
+
   }
 
   onSubmit() {
     const userInformation: UserInformation = {
-      username : this.registerForm.get('username').value,
-      email : this.registerForm.get('email').value,
-      password : this.registerForm.get('password').value
+      username: this.registerForm.get('username').value,
+      email: this.registerForm.get('email').value,
+      password: this.registerForm.get('password').value
     };
 
-    this.authService.doRegister(userInformation).subscribe( (res: RegisterResponse) => {
-        if (res.success)
-          this.router.navigate(['/login']);
-        this.success = res.success;
-        this._success.next(res.msg);
+    this.authService.doRegister(userInformation).subscribe((res: RegisterResponse) => {
+      if (res.success)
+        this.router.navigate(['/login']);
+      this.success = res.success;
+      this._success.next(res.msg);
     });
   }
 }

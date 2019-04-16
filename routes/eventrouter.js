@@ -111,7 +111,7 @@ router.get('/read/:userID', passport.authenticate('jwt', { session: false }), (r
       res.json({ success: false, msg: "Failed to get events by user ID." })
       console.log("Error getting events by user ID: " + err);
     } else {
-      res.json( events );
+      res.json(events);
     }
   });
 });

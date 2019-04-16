@@ -32,7 +32,7 @@ const ContactSchema = mongoose.Schema({
   },
   lastname:
   {
-      type: String
+    type: String
   },
   email:
   {

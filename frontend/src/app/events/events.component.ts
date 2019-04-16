@@ -32,7 +32,7 @@ export class EventsComponent implements OnInit {
     this.onClickedEvent = (index: number) => {
       if (this.selectedRow != index) {
         this.selectedRow = index;
-        this.eventService.getEventInformation(this.authService.getToken(), 
+        this.eventService.getEventInformation(this.authService.getToken(),
           this.events[index]._id);
       }
     }
@@ -45,9 +45,9 @@ export class EventsComponent implements OnInit {
     modalRef.result.then(() => this.refreshData());
   }
 
-  dateCompare (then: Date, now: Date): number {
-    var a: Date = new Date (then.getFullYear(), then.getMonth(), then.getDate());
-    var b: Date = new Date (now.getFullYear(), now.getMonth(), now.getDate());
+  dateCompare(then: Date, now: Date): number {
+    var a: Date = new Date(then.getFullYear(), then.getMonth(), then.getDate());
+    var b: Date = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     // this is today
     if (a.getDate() == b.getDate() && a.getMonth() == b.getMonth() && a.getFullYear() == b.getFullYear())

@@ -18,16 +18,13 @@
   </div>
   <form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
     <div class="modal-body">
-        <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="mapClicked($event)">
-            <agm-marker
-              [iconUrl]="'../../assets/images/youarehere.png'"
-              [latitude]="userLatitude"
-              [longitude]="userLongitude"></agm-marker>
-            <agm-marker
-            [iconUrl]="'../../assets/images/new.png'"
-              [latitude]="latitude"
-              [longitude]="longitude"></agm-marker>
-        </agm-map>
+      <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="mapClicked($event)">
+        <agm-marker [iconUrl]="'../../assets/images/youarehere.png'" [latitude]="userLatitude"
+          [longitude]="userLongitude">
+        </agm-marker>
+        <agm-marker [iconUrl]="'../../assets/images/new.png'" [latitude]="latitude" [longitude]="longitude">
+        </agm-marker>
+      </agm-map>
       <div class="form-group">
         <h4>Name</h4>
         <input class="form-control" placeholder="Name" type="text" formControlName="name" required maxlength="32">
@@ -60,16 +57,18 @@
         </div>
 
         <div id="collapsedRepeating" [ngbCollapse]="!(createReminderForm.get('isRepeating').value)">
-        <div class="row">
-          <label for="selectPickerRepeat col-md">Choose frequency:</label>
-          <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit" id="selectPickerRepeat">
-            <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
-          </select>
-        </div>
+          <div class="row">
+            <label for="selectPickerRepeat col-md">Choose frequency:</label>
+            <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit"
+              id="selectPickerRepeat">
+              <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
+            </select>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <h4>How many times?</h4>
-            <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required maxlength="32">
+            <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required
+              maxlength="32">
           </div> <!-- form-group// -->
         </div>
 

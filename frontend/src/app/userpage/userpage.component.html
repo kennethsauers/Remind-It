@@ -5,7 +5,8 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<br>
+<br>
 <h1>Settings and Preferences</h1>
 <form>
     <fieldset>
@@ -20,90 +21,28 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div> -->
         <!-- event settings -->
-        <div class="form-group">
-          <fieldset disabled="">
-            <label class="control-label" for="disabledInput">Change password</label>
-            <input class="form-control" formControlName="name" id="disabledInput" type="text" placeholder="">
+        <div class="form-group" style="max-width:30%">
+          <fieldset>
+            <br>
+            <h3>Change your Password</h3>
+            <label class="control-label" for="disabledInput">New password</label>
+            <input class="form-control" formControlName="newPass" id="disabledInput" type="text" placeholder="">
             <label class="control-label" for="disabledInput">Confirm new password</label>
-            <input class="form-control" formControlName="name" id="disabledInput" type="text" placeholder="">
+            <input class="form-control" formControlName="newPassConfirm" id="disabledInput" type="text" placeholder="">
+            <br>
+            <button type="button" class="btn btn-primary">Submit new password</button>
           </fieldset>
         </div>
-        <button type="button" class="btn btn-primary">Submit new password</button>
-        <div class="form-check disabled">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" unchecked="">
-            Highlight personal events
-            </label>
+        <div class="form-group" style="max-width:30%">
+          <fieldset>
+            <br>
+            <h3>Delete your Account</h3>
+            <label class="control-label" for="disabledInput">Enter your password to confirm account deletion</label>
+            <input class="form-control" formControlName="deleteAccountConfirm" id="disabledInput" type="text" placeholder="">
+            <br>
+            <button type="submit" class="btn btn-warning">Delete account</button>
+          </fieldset>
         </div>
-        <div class="form-check disabled">
-                <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="" unchecked="">
-                Highlight UCF events
-                </label>
-        </div>
-        <div class="form-check disabled">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" unchecked="">
-            Highlight all events
-            </label>
-        </div>
-        <br>
-        <!-- event settings -->
-        <fieldset class="form-group">
-        <legend>Events Settings</legend>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" unchecked="">
-            Highlight public events
-            </label>
-        </div>
-        <div class="form-check disabled">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" unchecked="">
-            Highlight personal events
-            </label>
-        </div>
-        <div class="form-check disabled">
-                <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="" unchecked="">
-                Highlight UCF events
-                </label>
-        </div>
-        <div class="form-check disabled">
-            <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="" unchecked="">
-            Highlight all events
-            </label>
-        </div>
-        </fieldset>
-        <!-- reminder settings -->
-        <fieldset class="form-group">
-                <legend>Reminder Settings</legend>
-                <div class="form-check">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="" unchecked="">
-                    Highlight public events
-                    </label>
-                </div>
-                <div class="form-check disabled">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="" unchecked="">
-                    Highlight personal events
-                    </label>
-                </div>
-                <div class="form-check disabled">
-                        <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="" unchecked="">
-                        Highlight UCF events
-                        </label>
-                </div>
-                <div class="form-check disabled">
-                    <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="" unchecked="">
-                    Highlight all events
-                    </label>
-                </div>
-                </fieldset>
-        <button type="submit" class="btn btn-primary">Submit</button>
     </fieldset>
+
 </form>

@@ -15,7 +15,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './create-reminder.component.html',
   styleUrls: ['./create-reminder.component.css']
 })
-export class CreateReminderComponent implements OnInit {
+export class CreateReminderComponent  {
   repeatingFrequencies = [
     { name: "Select an option...", value: "" },
     { name: "Daily", value: "day" },
@@ -50,19 +50,32 @@ export class CreateReminderComponent implements OnInit {
 
   latitude: Number;
   longitude: Number;
+  userLatitude: Number;
+  userLongitude: Number;
 
   constructor(private authService: AuthenticationService,
     private eventService: EventService,
     public activeModal: NgbActiveModal,
-    private router: Router) { }
-
-  ngOnInit() {
-    this._success.subscribe((msg) => { this.message = msg });
-    this._success.pipe(
-      debounceTime(5000)
-    ).subscribe(() => this.success = null);
-  }
-
+    private router: Router) {
+      this.authService.fetchLastLocation();
+      this.authService.isLocationDataValid.asObservable().subscribe((success) => {
+        if (success) {
+        this.userLatitude = this.authService.lastLocation.coords.latitude;
+        this.userLongitude = this.authService.lastLocation.coords.longitude;
+        }
+      });
+      if (this.authService.lastLocation == null) {
+        this.latitude = 28.6024274;
+        this.longitude = -81.2000599;
+      } else {
+        this.latitude = this.authService.lastLocation.coords.latitude;
+        this.longitude = this.authService.lastLocation.coords.longitude;
+      }
+      this._success.subscribe((msg) => { this.message = msg });
+      this._success.pipe(
+        debounceTime(5000)
+      ).subscribe(() => this.success = null);
+     }
   getDateFromPicker(date: any, time?: any): Date {
     if (time.hour != null)
       return new Date(date.year, date.month - 1, date.day, time.hour, time.minute, time.second);

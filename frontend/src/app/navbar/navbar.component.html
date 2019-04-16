@@ -1,7 +1,7 @@
 <!--DOnt mess with the nav bar or ill kill you [ :) ] unless you can get it to drop down when screen is minimized :D-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/">REMIND-IT</a>
-  <div class="navbar-collapse auto" id="navbarColor02" style="">
+  <div class="navbar-collapse auto" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li routerLinkActive="active" class="nav-item" *ngIf="!(loggedIn | async)">
         <a class="nav-link" routerLink="/register" *ngIf="!(loggedIn | async)">Register</a>

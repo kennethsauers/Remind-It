@@ -20,6 +20,10 @@
     <div class="modal-body">
         <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="mapClicked($event)">
             <agm-marker
+              [iconUrl]="'../../assets/images/youarehere.png'"
+              [latitude]="userLatitude"
+              [longitude]="userLongitude"></agm-marker>
+            <agm-marker
               [latitude]="latitude"
               [longitude]="longitude"></agm-marker>
         </agm-map>

@@ -10,10 +10,14 @@ import { Observable } from 'rxjs';
 })
 export class NavbarComponent implements OnInit {
   loggedIn: Observable<boolean>;
+  hasLocation: Observable<boolean>;
 
   constructor(private router: Router,
               public authService: AuthenticationService) {
-    this.loggedIn = authService.isLoggedIn();
+                this.loggedIn = authService.isLoggedIn();
+                this.hasLocation = authService.getLocation();
+    if (authService.lastLocation == null)
+      authService.fetchLastLocation();
   }
 
   ngOnInit() {

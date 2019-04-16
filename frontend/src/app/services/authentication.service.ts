@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -14,8 +13,10 @@ export class AuthenticationService {
   /// TODO: Change according to your setup
   readonly ApiUrl = 'https://localhost/users/';
   //readonly ApiUrl = 'https://themeanteam.site/users';
+  lastLocation: Position;
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);
+  isLocationDataValid = new BehaviorSubject<boolean>(this.lastLocation != null);
   
   /**
    * @param http HttpClient injection to make API requests
@@ -28,6 +29,26 @@ export class AuthenticationService {
       return localStorage.getItem('token');
     }
     return null;
+  }
+
+  public fetchLastLocation() {
+    if (this.lastLocation != null) return;
+    navigator.geolocation.watchPosition(
+      success => {
+        console.log(success);
+        this.lastLocation = success;
+        this.isLocationDataValid.next(true);
+        return success;
+      },
+      error => {
+        this.isLocationDataValid.next(false);
+        return null;
+      }
+    );
+  }
+
+  public getLocation(): Observable<boolean> {
+    return this.isLocationDataValid.asObservable();
   }
 
   public getUser(): User {

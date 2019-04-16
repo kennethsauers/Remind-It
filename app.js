@@ -67,12 +67,11 @@ app.get('/', (req, res) => {
 });
 
 // Starts server
-app.listen(port, () => {
-  console.log("HTTP server started on port ", port);
-});
+//app.listen(port, () => {
+//  console.log("HTTP server started on port ", port);
+//});
 
 // HTTPS instance used for debugging location services.
-/*
 https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
@@ -80,4 +79,3 @@ https.createServer({
 .listen(443, () => {
   console.log("HTTPS server started on port 443.");
 });
-*/

@@ -12,7 +12,7 @@ import { User } from '../schema/user';
 })
 export class AuthenticationService {
   /// TODO: Change according to your setup
-  readonly ApiUrl = 'http://localhost:3000/users/';
+  //readonly ApiUrl = 'http://localhost:3000/users/';
   //readonly ApiUrl = 'https://themeanteam.site/users';
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);
@@ -56,7 +56,7 @@ export class AuthenticationService {
           'Content-Type': 'application/json'
       })
     };
-    return this.http.post<AuthenticationResponse>(this.ApiUrl + 'auth', user, HttpOptions);
+    return this.http.post<AuthenticationResponse>('/users/auth', user, HttpOptions);
    }
 
    /**
@@ -89,6 +89,6 @@ export class AuthenticationService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<RegisterResponse>(this.ApiUrl + 'reg', user, HttpOptions);
+    return this.http.post<RegisterResponse>('/users/reg', user, HttpOptions);
   }
 }

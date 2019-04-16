@@ -12,6 +12,6 @@
  */
 
 module.exports = {
-  database: 'mongodb://localhost:27017/remind-it',
+  database: 'mongodb+srv://admin:dHaCsXkcn6AM4WRt@remind-it-10bjd.gcp.mongodb.net/test?retryWrites=true',
   secret: 'lllknotscanmainbreadsat'
 }

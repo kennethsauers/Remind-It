@@ -33,7 +33,7 @@ export class EventService {
         'Authorization': token
       })
     };
-    return this.http.post<CreateReminderResponse>(this.ApiUrl + 'create', reminder, HttpOptions);
+    return this.http.post<CreateReminderResponse>('/events/create', reminder, HttpOptions);
   }
 
   updateEvent(token: string, event: Reminder) {
@@ -43,7 +43,7 @@ export class EventService {
         'Authorization': token
       })
     };
-    this.http.put<UpdateEventResponse>(this.ApiUrl + 'update/' + event._id, event, HttpOptions).subscribe(res => {
+    this.http.put<UpdateEventResponse>('/events/update/' + event._id, event, HttpOptions).subscribe(res => {
         if (res.success) {
           // Update event and event list caches
           res.event.dueDate = new Date(res.event.dueDate);
@@ -63,7 +63,7 @@ export class EventService {
         'Authorization': token
       })
     };
-    this.http.get<Reminder>(this.ApiUrl + 'get/id/' + id, HttpOptions).subscribe(event => {
+    this.http.get<Reminder>('/events/get/id/' + id, HttpOptions).subscribe(event => {
       if (event.name != null) {
         event.dueDate = new Date(event.dueDate);
         this.onEventLoad.emit(event);
@@ -90,7 +90,7 @@ export class EventService {
       })
     };
 
-    return this.http.get<Reminder[]>(this.ApiUrl + 'get/' + kind, HttpOptions).pipe(      
+    return this.http.get<Reminder[]>('/events/get/' + kind, HttpOptions).pipe(
       map((data: any[]) => data.map((item: any) => new Reminder(
         item._id,
         item.userID,

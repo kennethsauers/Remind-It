@@ -59,7 +59,6 @@ router.get('/get/my', passport.authenticate('jwt', { session: false }), (req, re
 
 router.get('/get/all', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   Event.getPublicEvents((err, events) => {
-    console.log(err);
     if (err)
       res.json({ success: false, msg: "Failed to get public events." });
     else

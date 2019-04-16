@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MouseEvent } from '@agm/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -47,6 +48,9 @@ export class CreateReminderComponent implements OnInit {
   success: boolean;
   message: string;
 
+  latitude: Number;
+  longitude: Number;
+
   constructor(private authService: AuthenticationService,
     private eventService: EventService,
     public activeModal: NgbActiveModal,
@@ -66,6 +70,11 @@ export class CreateReminderComponent implements OnInit {
       return new Date(date.year, date.month - 1, date.day);
   }
 
+  mapClicked($event: MouseEvent) {
+    this.latitude = +$event.coords.lat;
+    this.longitude = +$event.coords.lng;
+  }
+
   onSubmit() {
     const reminderInformation: CreateReminderInformation = {
       userID: this.authService.getUser().id,
@@ -80,9 +89,8 @@ export class CreateReminderComponent implements OnInit {
       repeatUnit: this.createReminderForm.get('repeatUnit').value,
       mustBeNear: this.createReminderForm.get('mustBeNear').value,
       repeatConst: this.createReminderForm.get('repeatConst').value,
-      /// TODO: Add location stuff
-      lat: 0,
-      lng: 0,
+      lat: +this.latitude,
+      lng: +this.longitude,
     };
 
     this.eventService.addReminder(this.authService.getToken(), reminderInformation).subscribe((res: CreateReminderResponse) => {

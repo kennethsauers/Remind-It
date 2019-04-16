@@ -4,6 +4,7 @@ import { CreateReminderComponent } from '../create-reminder/create-reminder.comp
 import { EventService } from '../services/event.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Reminder } from '../schema/reminders';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-reminders',
@@ -16,6 +17,8 @@ export class RemindersComponent implements OnInit {
   selectedRow: number;
   onClickedEvent: Function;
   today: Date;
+  latitude: number;
+  longitude: number;
 
   constructor(private modalService: NgbModal,
     private eventService: EventService,
@@ -25,18 +28,24 @@ export class RemindersComponent implements OnInit {
         this.reminders = reminders;
       }
     });
-  }
-
-  ngOnInit() {
-    this.today = new Date();
-    this.refreshData();
+    
     this.onClickedEvent = (index: number) => {
       if (this.selectedRow != index) {
         this.selectedRow = index;
         this.eventService.getEventInformation(this.authService.getToken(), 
           this.reminders[index]._id);
+        this.latitude = this.reminders[index].lat;
+        this.longitude = this.reminders[index].lng;
       }
     }
+  }
+
+  ngOnInit() {
+    this.latitude = 28.6024274;
+    this.longitude = -81.2000599;
+    this.today = new Date();
+
+    this.refreshData();
   }
 
   dateCompare (then: Date, now: Date): number {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,11 +12,11 @@ import { User } from '../schema/user';
 })
 export class AuthenticationService {
   /// TODO: Change according to your setup
-  readonly ApiUrl = 'http://localhost:3000/users/';
+  readonly ApiUrl = 'https://localhost/users/';
   //readonly ApiUrl = 'https://themeanteam.site/users';
 
   isLoginSubject = new BehaviorSubject<boolean>(this.getToken() != null);
-
+  
   /**
    * @param http HttpClient injection to make API requests
    */

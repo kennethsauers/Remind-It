@@ -8,7 +8,6 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
 import { UserpageComponent } from './userpage/userpage.component';
-import { MapsComponent } from './maps/maps.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { EventsComponent } from './events/events.component';
 
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'settings', component: UserpageComponent },
-  { path: 'maps', component: MapsComponent },
   { path: 'reminders', component: RemindersComponent},
   { path: 'events', component: EventsComponent },
 

@@ -49,7 +49,7 @@ mongoose.connection.on('error', (err) => {
 
 // Backend initialization and definition.
 const app = express();                        // Initialize Express
-const port = 443;                             // Define port to listen on.
+const port = process.env.PORT || 3000;        // Define port to listen on.
 app.use(cors());                              // Initialize CORS
 app.use(bodyParser.json());                   // Initialize Body Parser
 app.use(passport.initialize());               // Initialize Passport (1)
@@ -66,22 +66,18 @@ app.get('/', (req, res) => {
   res.send("invalid endpoint")
 });
 
-// Serve files from 'ng build' aka frontend. -- Jose
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
 // Starts server
-app.listen(3000, () => {
-  console.log("HTTP server started on port 3000.");
+app.listen(port, () => {
+  console.log("HTTP server started on port ", port);
 });
 
-// When deploying, uncomment everything below and comment out the above
-// app.listen() code.
-/*https.createServer({
+// HTTPS instance used for debugging location services.
+/*
+https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
 }, app)
 .listen(443, () => {
   console.log("HTTPS server started on port 443.");
-});*/
+});
+*/

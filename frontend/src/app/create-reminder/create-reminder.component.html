@@ -18,6 +18,11 @@
   </div>
   <form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
     <div class="modal-body">
+        <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="mapClicked($event)">
+            <agm-marker
+              [latitude]="latitude"
+              [longitude]="longitude"></agm-marker>
+        </agm-map>
       <div class="form-group">
         <h4>Name</h4>
         <input class="form-control" placeholder="Name" type="text" formControlName="name" required maxlength="32">

@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
 
 // components
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +16,6 @@ import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserpageComponent } from './userpage/userpage.component';
 import { EventsComponent } from './events/events.component';
-import { MapsComponent } from './maps/maps.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { CreateReminderComponent } from './create-reminder/create-reminder.component';
 import { CreateEventComponent } from './create-event/create-event.component';
@@ -32,7 +32,6 @@ import { EventViewComponent } from './event-view/event-view.component';
     NavbarComponent,
     UserpageComponent,
     EventsComponent,
-    MapsComponent,
     RemindersComponent,
     CreateReminderComponent,
     CreateEventComponent,
@@ -45,6 +44,9 @@ import { EventViewComponent } from './event-view/event-view.component';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'SEE_DISCORD'
+    }),
     NgbModule
   ],
   providers: [],

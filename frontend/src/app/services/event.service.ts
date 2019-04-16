@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
   /// TODO: Change according to your setup
-  readonly ApiUrl = 'http://localhost:3000/events/';
+  readonly ApiUrl = 'https://localhost/events/';
   //readonly ApiUrl = 'https://themeanteam.site/events/';
 
   public onEventLoad: EventEmitter<Reminder> = new EventEmitter<Reminder>();
@@ -66,6 +66,9 @@ export class EventService {
     this.http.get<Reminder>(this.ApiUrl + 'get/id/' + id, HttpOptions).subscribe(event => {
       if (event.name != null) {
         event.dueDate = new Date(event.dueDate);
+        event.lat = +event.lat;
+        event.lng = +event.lng;
+        
         this.onEventLoad.emit(event);
       }
       }, err => {
@@ -100,8 +103,8 @@ export class EventService {
         new Date(item.dueDate),
         item.repeats,
         item.isComplete,
-        item.lat,
-        item.lng,
+        +item.lat,
+        +item.lng,
         item.repeatUnit,
         item.repeatConst,
         item.mustBeNear

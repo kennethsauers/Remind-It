@@ -35,12 +35,12 @@ export class AuthenticationService {
     if (this.lastLocation != null) return;
     navigator.geolocation.watchPosition(
       success => {
-        console.log(success);
         this.lastLocation = success;
         this.isLocationDataValid.next(true);
         return success;
       },
       error => {
+        console.log(error);
         this.isLocationDataValid.next(false);
         return null;
       }

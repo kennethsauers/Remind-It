@@ -84,7 +84,6 @@ router.get('/read', passport.authenticate('jwt', { session: false }), (req, res,
         res.json({ success: false, msg: "Failed to get events by user ID." })
         console.log("Error getting events by user ID: " + err);
       } else {
-        console.log("Events: " + events);
         res.json({ success: true, msg: events });
       }
     });
@@ -95,7 +94,6 @@ router.get('/read', passport.authenticate('jwt', { session: false }), (req, res,
         console.log("Error getting public events: " + err);
         res.json({ success: false, msg: "Failed to get public events." });
       } else {
-        console.log("Events: " + events);
         res.json({ success: true, msg: events })
       }
     });
@@ -127,7 +125,6 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), (req
       console.log("Error updating event: " + err);
       res.json({ success: false, msg: "Failed to update event." });
     } else {
-      console.log("New event: " + updatedEvent);
       res.json({ success: true, event: updatedEvent });
     }
   });
@@ -143,7 +140,6 @@ router.delete('/delete', passport.authenticate('jwt', { session: false }), (req,
         console.log("Error deleting event: " + err);
         res.json({ success: false, msg: "Failed to delete event." });
       } else {
-        console.log("Deleted event.");
         res.json({ success: true, msg: "Deleted event successfully." });
       }
     });

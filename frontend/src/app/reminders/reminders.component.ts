@@ -130,7 +130,12 @@ export class RemindersComponent implements OnInit {
     var copyReminder: Reminder = this.getCopy(reminder);
     var distance: number = 0;
 
-    if (reminder.repeats == true && reminder.repeatUnit != null && reminder.repeatConst != null) {
+    if (reminder.mustBeNear != null && reminder.mustBeNear == true && reminder.lat != null && reminder.lng != null) {
+      distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
+    }
+
+    if (reminder.repeats == true && reminder.repeatUnit != null
+        && reminder.repeatConst != null && distance <= 0.001) {
       var currentTime = reminder.dueDate.getTime();
       var newTime = currentTime;
       var fastForward = 0;
@@ -154,10 +159,6 @@ export class RemindersComponent implements OnInit {
          this.refreshData();
          return;
       }
-    }
-
-    if (reminder.mustBeNear != null && reminder.mustBeNear == true && reminder.lat != null && reminder.lng != null) {
-      distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
     }
 
     if (distance <= 0.001) {

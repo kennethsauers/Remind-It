@@ -13,3 +13,7 @@
   background-color:#123456 !important;
   color: white;
 }
+
+agm-map {
+  height: 450px;
+}

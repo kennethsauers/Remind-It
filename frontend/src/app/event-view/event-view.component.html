@@ -1,6 +1,5 @@
 <div class="container">
   <article class="card-body mx-auto" style="max-width: mx-auto">
-    <ngb-alert *ngIf="message != null" type="danger" (close)="message = null">{{ message }}</ngb-alert>
     <h2 class="card-title mb-4 mt-1">Event Viewer</h2>
     <form [formGroup]="eventViewForm">
       <div class="form-group">
@@ -14,7 +13,7 @@
           <ngb-timepicker class="col-sm" formControlName="time" [meridian]="true" [size]="small"></ngb-timepicker>
           <div class="col-sm d-flex align-items-center">
             <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dueDate" ngbDatepicker
-              #d="ngbDatepicker" (focus)="d.toggle()" required>
+              #d="ngbDatepicker" required>
           </div>
         </div>
       </div> <!-- form-group-->
@@ -45,8 +44,6 @@
               maxlength="32">
           </div> <!-- form-group// -->
         </div>
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="event == null"
-          (click)="onSubmit()">{{ inEditMode ? "Save Edit" : "Edit Event"}}</button>
       </div>
     </form>
   </article>

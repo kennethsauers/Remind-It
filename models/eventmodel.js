@@ -66,20 +66,20 @@ module.exports.getEventByID = function (id, callback) {
 
 // READ: Find subset of events by user id
 module.exports.getEventsByUserID = function (userID, callback) {
-  const query = { userID: userID };
+  const query = { userID: userID, isComplete: false };
   Event.find(query, callback);
 }
 
 // READ: Find subset of events by user id and sort by due date
 module.exports.getUserEventsOrdered = function (userIDcallback) {
-  const query = { userID: userID };
+  const query = { userID: userID, isComplete: false };
   const options = { sort: { dueDate: -1 } };
   Event.find(query, null, options, callback);
 }
 
 // READ: Find all public events
 module.exports.getPublicEvents = function (callback) {
-  const query = { isPublic: true };
+  const query = { isPublic: true, isComplete: false };
   Event.find(query, callback);
 }
 

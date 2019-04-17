@@ -41,6 +41,7 @@
         <agm-map [zoom]="9" [latitude]="(latitude)" [longitude]="(longitude)">
             <agm-marker [iconUrl]="'../../assets/images/youarehere.png'" [latitude]="userLatitude"
                 [longitude]="userLongitude"></agm-marker>
+            <agm-circle [radius]="100" [latitude]="userLatitude" [longitude]="userLongitude"></agm-circle>
             <agm-marker *ngFor="let reminder of reminders; let i = index" (markerClick)="onClickedEvent(i)"
                 [iconUrl]="getImage(i)" [latitude]="reminder.lat != null ? reminder.lat : null"
                 [longitude]="reminder.lng != null ? reminder.lng : null"></agm-marker>

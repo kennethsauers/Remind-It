@@ -128,7 +128,7 @@ export class RemindersComponent implements OnInit {
 
     if (distance <= 0.001) {
       copyReminder.isComplete = true;
-      this.eventService.updateEvent(this.authService.getToken(), copyReminder);
+      this.eventService.updateEvent(this.authService.getToken(), copyReminder, false);
       this.refreshData();
     } else {
       this.refreshData();

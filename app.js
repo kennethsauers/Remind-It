@@ -83,4 +83,3 @@ if (useSSL) {
     console.log("HTTP server started on port ", port);
   });
 }
-

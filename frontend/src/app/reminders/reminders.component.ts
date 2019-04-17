@@ -90,14 +90,22 @@ export class RemindersComponent implements OnInit {
 
   getClass(index: number): string {
     const reminder: Reminder = this.reminders[index];
-    const then = new Date(reminder.dueDate)
+    const then = new Date(reminder.dueDate);
+    var buttonClass: string;
+    var tableClass: string;
+    var retString: string;
+    var distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
+
     if (this.dateCompare(then, this.today) == 0) {
-      return "table-secondary";
+      tableClass = "table-secondary";
     } else if (this.dateCompare(then, this.today) < 0) {
-      return "table-warning";
+      tableClass = "table-warning";
     } else if (this.dateCompare(then, this.today) > 0) {
-      return "table-default"
+      tableClass = "table-default";
     }
+
+    retString = tableClass;
+    return retString;
   }
 
   refreshData() {

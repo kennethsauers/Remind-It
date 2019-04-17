@@ -4,17 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --ssl --ssl-key ../server.key --ssl-cert ../server.crt",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.5",
-    "@angular/animations": "^7.2.13",
     "@angular/common": "^7.2.13",
-    "@angular/compiler": "^7.2.13",
     "@angular/core": "^7.2.13",
     "@angular/forms": "^7.2.13",
     "@angular/platform-browser": "^7.2.13",
@@ -22,7 +17,6 @@
     "@angular/router": "^7.2.13",
     "@auth0/angular-jwt": "^2.1.0",
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
-    "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
@@ -30,22 +24,8 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.8",
     "@angular/cli": "^7.3.8",
+    "@angular/compiler": "^7.2.13",
     "@angular/compiler-cli": "^7.2.13",
-    "@angular/language-service": "^7.2.13",
-    "@types/jasmine": "~2.8.8",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~8.9.4",
-    "codelyzer": "~4.5.0",
-    "jasmine-core": "~2.99.1",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "^4.1.0",
-    "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "~2.0.1",
-    "karma-jasmine": "~1.1.2",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
-    "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "@angular/language-service": "^7.2.13"
   }
 }

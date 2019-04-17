@@ -6,8 +6,7 @@ import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-event-view',
-  templateUrl: './event-view.component.html',
-  styleUrls: ['./event-view.component.css']
+  templateUrl: './event-view.component.html'
 })
 export class EventViewComponent {
   repeatingFrequencies = [

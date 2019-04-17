@@ -5,10 +5,9 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  templateUrl: './navbar.component.html'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   loggedIn: Observable<boolean>;
   hasLocation: Observable<boolean>;
 
@@ -18,8 +17,5 @@ export class NavbarComponent implements OnInit {
     this.hasLocation = authService.getLocation();
     if (authService.lastLocation == null && authService.getToken() != null)
       authService.fetchLastLocation();
-  }
-
-  ngOnInit() {
   }
 }

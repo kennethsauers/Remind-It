@@ -7,8 +7,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-reminder-view',
-  templateUrl: './reminder-view.component.html',
-  styleUrls: ['./reminder-view.component.css']
+  templateUrl: './reminder-view.component.html'
 })
 export class ReminderViewComponent {
   repeatingFrequencies = [

@@ -25,7 +25,8 @@
             <tbody>
                 <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)"
                     [class.active]="i == selectedRow" [className]="getClass(i)">
-                    <td><button type="button" class="btn btn-primary" (click)="completeReminder(i)">&#10003;</button></td>
+                    <td><button type="button" class="btn btn-primary" (click)="completeReminder(i)">&#10003;</button>
+                    </td>
                     <td>{{reminder.name}}</td>
                     <td>{{reminder.description}}</td>
                     <td>{{reminder.dueDate | date: 'medium'}}</td>
@@ -35,13 +36,15 @@
     </div>
     <!-- other column has maps and the reminders stuff on the right side of webpage -->
     <div id="side" class="column">
-        <agm-map [zoom]="9" [latitude]="(latitude)" [longitude]="(longitude)">
+        <agm-map [zoom]="12" [latitude]="(latitude)" [longitude]="(longitude)">
             <agm-marker [iconUrl]="'../../assets/images/youarehere.png'" [latitude]="userLatitude"
                 [longitude]="userLongitude"></agm-marker>
+            <agm-circle [radius]="100" [latitude]="userLatitude" [longitude]="userLongitude"></agm-circle>
+
             <agm-marker *ngFor="let reminder of reminders; let i = index" (markerClick)="onClickedEvent(i)"
                 [iconUrl]="getImage(i)" [latitude]="reminder.lat != null ? reminder.lat : null"
                 [longitude]="reminder.lng != null ? reminder.lng : null"></agm-marker>
-            
+
         </agm-map>
         <!--Entire reminders container-->
         <app-event-view></app-event-view>

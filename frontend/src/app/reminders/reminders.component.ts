@@ -91,7 +91,6 @@ export class RemindersComponent implements OnInit {
   getClass(index: number): string {
     const reminder: Reminder = this.reminders[index];
     const then = new Date(reminder.dueDate)
-
     if (this.dateCompare(then, this.today) == 0) {
       return "table-secondary";
     } else if (this.dateCompare(then, this.today) < 0) {
@@ -108,5 +107,37 @@ export class RemindersComponent implements OnInit {
   createReminder() {
     const modalRef = this.modalService.open(CreateReminderComponent);
     modalRef.result.then(() => this.refreshData(), () => { });
+  }
+
+  completeReminder(index: number) {
+    const reminder: Reminder = this.reminders[index];
+    var copyReminder: Reminder = this.getCopy(reminder);
+    var distance: number = 0;
+
+    if (reminder.mustBeNear != null && reminder.mustBeNear == true && reminder.lat != null && reminder.lng != null) {
+      distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
+    }
+
+    if (distance <= 0.001) {
+      copyReminder.isComplete = true;
+      this.eventService.updateEvent(this.authService.getToken(), copyReminder);
+      this.refreshData();
+    } else {
+      this.refreshData();
+    }
+  }
+
+  findDistance(x1: number, x2: number, y1: number, y2: number): number {
+    const xDiff: number = x2 - x1;
+    const yDiff: number = y2 - y1;
+    const xSqr: number = Math.pow(xDiff, 2);
+    const ySqr: number = Math.pow(yDiff, 2);
+    return Math.sqrt(xSqr + ySqr);
+  }
+
+  getCopy(oldReminder: Reminder): Reminder {
+    return new Reminder(oldReminder._id, oldReminder.userID, oldReminder.isPublic, oldReminder.name,
+      oldReminder.description, oldReminder.dueDate, oldReminder.repeats, oldReminder.isComplete, oldReminder.lat,
+      oldReminder.lng, oldReminder.repeatUnit, oldReminder.repeatConst, oldReminder.mustBeNear);
   }
 }

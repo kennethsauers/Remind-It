@@ -71,3 +71,12 @@ To check which directory you're currently in, type:
   /mnt/c/users/<your_username>/desktop
 
 Done!
+
+
+HOW TO DEPLOY TO GCP
+
+Create app.yaml
+Set the AGM API key
+Set the HTTP connection instead of HTTPS
+Set the remote database connection string
+Set the readonly API URLs for the services to "/events/" and "/users/"

@@ -43,7 +43,7 @@ export class RemindersComponent implements OnInit {
 
     this.reminderWatcher = this.eventService.onEventListLoad.subscribe({
       next: (reminders: Reminder[]) => {
-        this.reminders = reminders;
+        this.reminders = reminders.sort((a,b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
       }
     });
 

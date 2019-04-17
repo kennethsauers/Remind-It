@@ -45,7 +45,7 @@ import { EventViewComponent } from './event-view/event-view.component';
     FormsModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'SEE_DISCORD'
+      apiKey: 'AIzaSyDQzUboHkHzo38EDaJBpP_etZo2uOiS4r4'
     }),
     NgbModule
   ],

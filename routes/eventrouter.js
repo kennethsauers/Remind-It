@@ -132,10 +132,10 @@ router.put('/update/:id', passport.authenticate('jwt', { session: false }), (req
 
 
 // Delete event
-router.delete('/delete', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-  if (req.body._id) {
-    const eventID = req.body._id;
-    Event.deleteEvent(req.body._id, (err) => {
+router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  if (req.params.id) {
+    const eventID = req.params.id;
+    Event.deleteEvent(eventID, (err) => {
       if (err) {
         console.log("Error deleting event: " + err);
         res.json({ success: false, msg: "Failed to delete event." });

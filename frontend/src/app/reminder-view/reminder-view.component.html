@@ -46,7 +46,9 @@
           </div> <!-- form-group// -->
         </div>
         <button type="submit" class="btn btn-primary btn-block" [disabled]="reminder == null"
-          (click)="onSubmit()">{{ inEditMode ? "Save Edit" : "Edit Reminder"}}</button>
+          (click)="onSubmitEdit()">{{ inEditMode ? "Save Edit" : "Edit Reminder"}}</button>
+        <button type="submit" class="btn btn-warning btn-block" [disabled]="reminder == null"
+          (click)="onSubmitDelete()">Delete Reminder</button>
       </div>
     </form>
   </article>

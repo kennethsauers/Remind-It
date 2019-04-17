@@ -47,3 +47,8 @@ export class UpdateEventResponse {
     msg?: string;
     event?: any;
 }
+
+export class DeleteReminderResponse {
+  success: boolean;
+  msg?: string;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Reminder } from '../schema/reminders';
+import { Reminder, DeleteReminderResponse } from '../schema/reminders';
 import { EventService } from '../services/event.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
@@ -75,7 +75,7 @@ export class ReminderViewComponent {
       return new Date(date.year, date.month - 1, date.day);
   }
 
-  onSubmit() {
+  onSubmitEdit() {
     const newEvent: Reminder = this.getCopy();
     // If in edit, we want to save the changes (if any) and return to read-mode
     if (this.inEditMode) {
@@ -96,6 +96,16 @@ export class ReminderViewComponent {
 
 
     this.inEditMode = !this.inEditMode;
+  }
+
+  onSubmitDelete() {
+    const delEvent: Reminder = this.getCopy();
+    this.reminderViewForm.disable();
+    this.reminderViewForm.setValue({name: null, description: null, dueDate: null,
+      time: null, isRepeating: null, mustBeNear: null, repeatUnit: null, repeatConst: null});
+    this.eventService.deleteEvent(this.authService.getToken(), delEvent);
+    this.inEditMode = false;
+    this.eventService.getMyReminders(this.authService.getToken());
   }
 
   getCopy(): Reminder {

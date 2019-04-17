@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { CreateReminderInformation, CreateReminderResponse, Reminder, UpdateEventResponse } from '../schema/reminders';
+import { CreateReminderInformation, CreateReminderResponse, Reminder, UpdateEventResponse, DeleteReminderResponse } from '../schema/reminders';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -49,6 +49,23 @@ export class EventService {
         res.event.dueDate = new Date(res.event.dueDate);
         this.onEventLoad.emit(res.event);
         this.getMyReminders(token);
+      }
+    }, err => {
+      console.log(err);
+      return false;
+    });
+  }
+
+  deleteEvent(token: string, event: Reminder) {
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    this.http.delete<DeleteReminderResponse>(this.ApiUrl + 'delete/' + event._id, HttpOptions).subscribe(res => {
+      if (res.success) {
+        console.log(res.msg);
       }
     }, err => {
       console.log(err);

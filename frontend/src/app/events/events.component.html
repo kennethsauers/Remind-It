@@ -1,41 +1,49 @@
-<!-- If you can find a better side bar fantastic....this whole page needs work, can only access this page from the login botton-->
-<link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://bootswatch.com/4/solar/_bootswatch.scss"></script>
-<script src="https://bootswatch.com/4/solar/_variables.scss"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<!-- <div class="form-group form-inline">
+    Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="reminderService.searchTerm"/>
+    <span class="ml-3" *ngIf="reminderService.loading$ | async">Loading...</span>
+</div> -->
 <!-- sets up a row of two columns -->
-<div class='row'>
+<div class='row' style="max-width:99%;margin-top:1%;margin-left:1%">
     <div id="main" class="column">
-        <h1>Reminders</h1>
-        <button type="button" class="btn btn-success" (click)="createEvent()">New Event</button>
-        <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
+        <div id="top" class="row">
+            <div id="title" class="column" style="width:80%;">
+                <h1>Events</h1>
+            </div>
+            <div id="refresh" class="column">
+                <button type="button" class="btn btn-info" (click)="refreshData()">Refresh</button>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col" sortable="name">Name</th>
-                    <th scope="col" sortable="description">Description</th>
-                    <th scope="col" sortable="dueDate">Due</th>
+                    <th scope="col" sortable="done" style="width:5%;">Done</th>
+                    <th scope="col" sortable="name" style="width:20%;">Name</th>
+                    <th scope="col" sortable="description" style="width:50%;">Description</th>
+                    <th scope="col" sortable="dueDate" style="width:25%;">Due Date and Time</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="color:white" *ngFor="let event of events; let i = index" (click)="onClickedEvent(i)"
+                <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)"
                     [class.active]="i == selectedRow" [className]="getClass(i)">
-                    <td>{{event.name}}</td>
-                    <td>{{event.description}}</td>
-                    <td>{{event.dueDate | date: 'medium'}}</td>
+                    <td><button type="button" class="btn btn-primary" (click)="completeReminder(i)">&#10003;</button></td>
+                    <td>{{reminder.name}}</td>
+                    <td>{{reminder.description}}</td>
+                    <td>{{reminder.dueDate | date: 'medium'}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <!-- other column has maps and the reminders stuff on the right side of webpage -->
     <div id="side" class="column">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.911485963415!2d-81.20224858460165!3d28.60243209219278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e7685d6a0a495f%3A0x5fd59b92b3c79bab!2sUniversity+of+Central+Florida!5e0!3m2!1sen!2sus!4v1555186205301!5m2!1sen!2sus"
-            width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+        <agm-map [zoom]="9" [latitude]="(latitude)" [longitude]="(longitude)">
+            <agm-marker [iconUrl]="'../../assets/images/youarehere.png'" [latitude]="userLatitude"
+                [longitude]="userLongitude"></agm-marker>
+            <agm-marker *ngFor="let reminder of reminders; let i = index" (markerClick)="onClickedEvent(i)"
+                [iconUrl]="getImage(i)" [latitude]="reminder.lat != null ? reminder.lat : null"
+                [longitude]="reminder.lng != null ? reminder.lng : null"></agm-marker>
+            
+        </agm-map>
+        <!--Entire reminders container-->
         <app-event-view></app-event-view>
     </div>
 </div>

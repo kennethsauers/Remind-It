@@ -36,7 +36,7 @@ export class EventService {
     return this.http.post<CreateReminderResponse>(this.ApiUrl + 'create', reminder, HttpOptions);
   }
 
-  updateEvent(token: string, event: Reminder) {
+  updateEvent(token: string, event: Reminder, loadEvents: boolean) {
     const HttpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -48,7 +48,10 @@ export class EventService {
         // Update event and event list caches
         res.event.dueDate = new Date(res.event.dueDate);
         this.onEventLoad.emit(res.event);
-        this.getMyReminders(token);
+        if (!loadEvents)
+          this.getMyReminders(token);
+        else
+          this.getPublicEvents(token);
       }
     }, err => {
       console.log(err);

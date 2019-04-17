@@ -89,7 +89,7 @@ export class ReminderViewComponent {
       newEvent.repeatUnit = this.reminderViewForm.get('repeatUnit').value;
       newEvent.repeatConst = this.reminderViewForm.get('repeatConst').value
 
-      this.eventService.updateEvent(this.authService.getToken(), newEvent);
+      this.eventService.updateEvent(this.authService.getToken(), newEvent, false);
       this.reminderViewForm.disable();
     } else
       this.reminderViewForm.enable();

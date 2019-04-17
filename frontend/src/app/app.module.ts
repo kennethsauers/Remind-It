@@ -18,7 +18,6 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { EventsComponent } from './events/events.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { CreateReminderComponent } from './create-reminder/create-reminder.component';
-import { CreateEventComponent } from './create-event/create-event.component';
 import { ReminderViewComponent } from './reminder-view/reminder-view.component';
 import { EventViewComponent } from './event-view/event-view.component';
 
@@ -34,7 +33,6 @@ import { EventViewComponent } from './event-view/event-view.component';
     EventsComponent,
     RemindersComponent,
     CreateReminderComponent,
-    CreateEventComponent,
     ReminderViewComponent,
     EventViewComponent
   ],
@@ -51,6 +49,6 @@ import { EventViewComponent } from './event-view/event-view.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateReminderComponent, CreateEventComponent]
+  entryComponents: [CreateReminderComponent]
 })
 export class AppModule { }

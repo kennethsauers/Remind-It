@@ -31,9 +31,9 @@
 
         <div id="collapsedRepeating" [ngbCollapse]="!(reminderViewForm.get('isRepeating').value)">
           <div class="row">
-            <label for="selectPickerRepeat col-md">Choose a unit of time</label><br>
+            <label for="selectPickerRepeat col-md">Choose a unit of time</label>
             <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit"
-              id="selectPickerRepeat">
+              id="selectPickerRepeat" style="max-width: 30%; align:right;">
               <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
             </select>
           </div>

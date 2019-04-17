@@ -130,6 +130,32 @@ export class RemindersComponent implements OnInit {
     var copyReminder: Reminder = this.getCopy(reminder);
     var distance: number = 0;
 
+    if (reminder.repeats == true && reminder.repeatUnit != null && reminder.repeatConst != null) {
+      var currentTime = reminder.dueDate.getTime();
+      var newTime = currentTime;
+      var fastForward = 0;
+
+      if (reminder.repeatUnit === "day") {
+        fastForward = reminder.repeatConst * 86400000;
+      } else if (reminder.repeatUnit === "week") {
+        fastForward = reminder.repeatConst * 604800000;
+      } else if (reminder.repeatUnit === "month") {
+        fastForward = reminder.repeatConst * 2629746000;
+      } else {
+        ;
+      }
+
+      if (fastForward <= 0) {
+        ;
+      } else {
+         newTime = currentTime + fastForward;
+         copyReminder.dueDate = new Date(newTime);
+         this.eventService.updateEvent(this.authService.getToken(), copyReminder, false);
+         this.refreshData();
+         return;
+      }
+    }
+
     if (reminder.mustBeNear != null && reminder.mustBeNear == true && reminder.lat != null && reminder.lng != null) {
       distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
     }

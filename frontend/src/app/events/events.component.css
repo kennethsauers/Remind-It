@@ -1,11 +1,15 @@
 /* dont touch the css!!! -.- aligns perfectly with edge of page */
 #main{
-  width:50%;
-  margin-left: 3px;
+  width:56%;
+  margin-top:1%;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 #side{
-  width:49%;
+  width:38%;
+  margin-top:1%;
+  margin-right: 2%;
   background-color: #253238;
 }
 

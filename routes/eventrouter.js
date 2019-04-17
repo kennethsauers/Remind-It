@@ -57,6 +57,16 @@ router.get('/get/my', passport.authenticate('jwt', { session: false }), (req, re
   });
 });
 
+router.get('/get/my/:userID', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  Event.getEventsByUserID(req.params.userID, (err, events) => {
+    if (err) {
+      res.json({ success: false, msg: "Failed to get events by user ID." });
+    } else {
+      res.json(events)
+    }
+  });
+});
+
 router.get('/get/all', passport.authenticate('jwt', { session: false }), (req, res, next) => {
   Event.getPublicEvents((err, events) => {
     if (err)

@@ -97,11 +97,19 @@ export class RemindersComponent implements OnInit {
     var distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
 
     if (this.dateCompare(then, this.today) == 0) {
-      tableClass = "table-secondary";
-    } else if (this.dateCompare(then, this.today) < 0) {
-      tableClass = "table-warning";
-    } else if (this.dateCompare(then, this.today) > 0) {
+      if (distance > 0.001 && reminder.mustBeNear == true) {
+        tableClass = "table-secondary";
+      } else {
+        tableClass = "table-primary";
+      }
+    }
+
+    if (this.dateCompare(then, this.today) > 0) {
       tableClass = "table-default";
+    }
+
+    if (this.dateCompare(then, this.today) < 0) {
+     tableClass = "table-warning";
     }
 
     retString = tableClass;

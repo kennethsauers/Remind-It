@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top:2%">
   <article class="card-body mx-auto" style="max-width: mx-auto">
     <h2 class="card-title mb-4 mt-1">Event Viewer</h2>
     <form [formGroup]="eventViewForm">
@@ -19,19 +19,18 @@
       </div> <!-- form-group-->
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" formControlName="mustBeNear" id="checkBoxNear">
-        <label class="custom-control-label" for="checkBoxNear">Do you have to be near to complete?</label>
+        <label class="custom-control-label" for="checkBoxNear">Enforce geolocation proximity</label>
       </div>
-      <br />
       <div class="form-group">
         <div class="custom-control custom-checkbox">
           <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
           <input type="checkbox" class="custom-control-input" formControlName="isRepeating" id="checkBoxRepeating">
-          <label class="custom-control-label" for="checkBoxRepeating">Does it repeat?</label>
+          <label class="custom-control-label" for="checkBoxRepeating">Repeats</label>
         </div>
 
         <div id="collapsedRepeating" [ngbCollapse]="!(eventViewForm.get('isRepeating').value)">
           <div class="row">
-            <label for="selectPickerRepeat col-md">Choose frequency:</label>
+            <label for="selectPickerRepeat col-md">Choose a unit of time</label>
             <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit"
               id="selectPickerRepeat">
               <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
@@ -39,7 +38,7 @@
           </div>
 
           <div class="form-group">
-            <h4>How many times?</h4>
+            <h4>How many units of time must pass?</h4><br>
             <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required
               maxlength="32">
           </div> <!-- form-group// -->

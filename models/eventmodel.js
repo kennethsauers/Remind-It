@@ -73,7 +73,7 @@ module.exports.getEventsByUserID = function (userID, callback) {
 // READ: Find subset of events by user id and sort by due date
 module.exports.getUserEventsOrdered = function (userIDcallback) {
   const query = { userID: userID, isComplete: false };
-  const options = { sort: { dueDate: -1 } };
+  const options = { sort: { dueDate: 1 } };
   Event.find(query, null, options, callback);
 }
 

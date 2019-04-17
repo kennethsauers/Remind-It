@@ -16,17 +16,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col" sortable="done" style="width:5%;">Done</th>
+                    <!--th scope="col" sortable="done" style="width:5%;">Done</th-->
                     <th scope="col" sortable="name" style="width:20%;">Name</th>
                     <th scope="col" sortable="description" style="width:50%;">Description</th>
-                    <th scope="col" sortable="dueDate" style="width:25%;">Due Date and Time</th>
+                    <th scope="col" sortable="dueDate" style="width:30%;">Due Date and Time</th>
                 </tr>
             </thead>
             <tbody>
                 <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)"
                     [class.active]="i == selectedRow" [className]="getClass(i)">
-                    <td><button type="button" class="btn btn-primary" (click)="completeReminder(i)">&#10003;</button>
-                    </td>
+                    <!--td><button type="button" class="btn btn-primary" (click)="completeReminder(i)">&#10003;</button>
+                    </td-->
                     <td>{{reminder.name}}</td>
                     <td>{{reminder.description}}</td>
                     <td>{{reminder.dueDate | date: 'medium'}}</td>

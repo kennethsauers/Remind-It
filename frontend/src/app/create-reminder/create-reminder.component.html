@@ -8,66 +8,66 @@
 
 <!--Entire form container-->
 <article class="card-body mx-auto">
-  <ngb-alert *ngIf="success" type="success" (close)="success = null">{{ message }}</ngb-alert>
-  <ngb-alert *ngIf="success != null && !success" type="danger" (close)="success = null">{{ message }}</ngb-alert>
+  <ngb-alert *ngIf="madeReminder" type="success" (close)="madeReminder = null">{{ createResponseMessage }}</ngb-alert>
+  <ngb-alert *ngIf="madeReminder != null && !madeReminder" type="danger" (close)="madeReminder = null">{{ createResponseMessage }}</ngb-alert>
   <div class="modal-header">
     <h2 class="modal-title mb-4 mt-1">New Reminder</h2>
     <button type="button" class="close" aria-label="Close" (click)="this.activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form [formGroup]="createReminderForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="createReminderForm" (ngSubmit)="createReminder()">
     <div class="modal-body">
-      <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="mapClicked($event)">
+      <agm-map [latitude]="newReminderLatitude" [longitude]="newReminderLongitude" (mapClick)="mapClicked($event)">
         <agm-marker [iconUrl]="'../../assets/images/youarehere.png'" [latitude]="userLatitude"
           [longitude]="userLongitude">
         </agm-marker>
-        <agm-marker [iconUrl]="'../../assets/images/new.png'" [latitude]="latitude" [longitude]="longitude">
+        <agm-marker [iconUrl]="'../../assets/images/new.png'" [latitude]="newReminderLatitude" [longitude]="newReminderLongitude">
         </agm-marker>
       </agm-map>
       <div class="form-group">
         <h4>Name</h4>
-        <input class="form-control" placeholder="Name" type="text" formControlName="name" required maxlength="32">
+        <input class="form-control" placeholder="Name" type="text" formControlName="newReminderName" required maxlength="32">
       </div> <!-- form-group// -->
       <div class="form-group">
         <h4>Description</h4>
-        <textarea class="form-control" placeholder="Description" formControlName="description" required
+        <textarea class="form-control" placeholder="Description" formControlName="newReminderDescription" required
           rows="3"></textarea>
       </div> <!-- form-group// -->
       <div class="form-group">
         <h4>Due Date</h4>
         <div class="row">
-          <ngb-timepicker class="col-sm" formControlName="time" [meridian]="true" [size]="small"></ngb-timepicker>
+          <ngb-timepicker class="col-sm" formControlName="newReminderTime" [meridian]="true" [size]="small"></ngb-timepicker>
           <div class="col-sm d-flex align-items-center">
-            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="dueDate" ngbDatepicker
+            <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="newReminderDueDate" ngbDatepicker
               #d="ngbDatepicker" (focus)="d.toggle()" required>
           </div>
         </div>
       </div> <!-- form-group-->
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" formControlName="mustBeNear" id="checkBoxNear">
-        <label class="custom-control-label" for="checkBoxNear">Do you have to be near to complete?</label>
+        <input type="checkbox" class="custom-control-input" formControlName="newReminderMustBeNear" id="newReminderCheckBoxNear">
+        <label class="custom-control-label" for="newReminderCheckBoxNear">Do you have to be near to complete?</label>
       </div>
       <br />
       <div class="form-group">
         <div class="custom-control custom-checkbox">
           <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
-          <input type="checkbox" class="custom-control-input" formControlName="isRepeating" id="checkBoxRepeating">
-          <label class="custom-control-label" for="checkBoxRepeating">Does it repeat?</label>
+          <input type="checkbox" class="custom-control-input" formControlName="newReminderisRepeating" id="newReminderCheckBoxRepeating">
+          <label class="custom-control-label" for="newReminderCheckBoxRepeating">Does it repeat?</label>
         </div>
 
-        <div id="collapsedRepeating" [ngbCollapse]="!(createReminderForm.get('isRepeating').value)">
+        <div id="newReminderCollapsedRepeating" [ngbCollapse]="!(createReminderForm.get('newReminderisRepeating').value)">
           <div class="row">
             <label for="selectPickerRepeat col-md">Choose frequency:</label>
-            <select class="form-control-sm col-sm" name="repeatUnit" formControlName="repeatUnit"
-              id="selectPickerRepeat">
+            <select class="form-control-sm col-sm" name="newReminderRepeatUnit" formControlName="newReminderRepeatUnit"
+              id="newReminderSelectPickerRepeat">
               <option *ngFor="let freq of repeatingFrequencies" [ngValue]="freq.value">{{ freq.name }}</option>
             </select>
           </div>
 
           <div class="form-group">
             <h4>How many times?</h4>
-            <input class="form-control" placeholder="repeatConst" type="text" formControlName="repeatConst" required
+            <input class="form-control" placeholder="repeatConst" type="text" formControlName="newReminderRepeatConst" required
               maxlength="32">
           </div> <!-- form-group// -->
         </div>

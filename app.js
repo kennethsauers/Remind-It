@@ -34,7 +34,6 @@ const config     = require('./config/databaseconfig');
 const users      = require('./routes/userrouter');
 const events     = require('./routes/eventrouter');
 
-
 // Database initialization.
 // Will refactor later.
 // (2019-03-04, 12:39 p.m., JBN)
@@ -46,36 +45,42 @@ mongoose.connection.on('error', (err) => {
   console.log('DB Error: ' + err);
 });
 
-
 // Backend initialization and definition.
-const app = express();                        // Initialize Express
-const port = process.env.PORT || 3000;        // Define port to listen on.
-app.use(cors());                              // Initialize CORS
-app.use(bodyParser.json());                   // Initialize Body Parser
-app.use(passport.initialize());               // Initialize Passport (1)
-app.use(passport.session());                  // Initialize Passport (2)
-require('./config/passportconfig')(passport); // Initialize Passport (3)
-app.use('/users', users);                     // Initialize user router.
-app.use('/events', events);                   // Initialize event router.
-
-// Point to Angular build location.
-app.use(express.static(path.join(__dirname, 'public')));
+const useSSL = true;
+const app = express();                                      // Initialize Express
+const port = process.env.PORT || (useSSL ? 443 : 3000);     // Define port to listen on.
+app.use(cors());                                            // Initialize CORS
+app.use(bodyParser.json());                                 // Initialize Body Parser
+app.use(passport.initialize());                             // Initialize Passport (1)
+app.use(passport.session());                                // Initialize Passport (2)
+require('./config/passportconfig')(passport);               // Initialize Passport (3)
+app.use(express.static(path.join(__dirname, 'public')));    // Point to Angular build location.
+app.use('/users', users);                                   // Initialize user router.
+app.use('/events', events);                                 // Initialize event router.
 
 // Implicitly deny access to root endpoint.
 app.get('/', (req, res) => {
   res.send("invalid endpoint")
 });
 
-// Starts server
-//app.listen(port, () => {
-//  console.log("HTTP server started on port ", port);
-//});
-
-// HTTPS instance used for debugging location services.
-https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
-.listen(443, () => {
-  console.log("HTTPS server started on port 443.");
+// Serve files from 'ng build' aka frontend. -- Jose
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
+
+// Starts server (useSSL flag determines HTTPS or not)
+if (useSSL) {
+  // HTTPS instance used for debugging location services.
+  https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  }, app)
+  .listen(port, () => {
+    console.log("HTTPS server started on port ", port);
+  });
+} else {
+  app.listen(port, () => {
+    console.log("HTTP server started on port ", port);
+  });
+}
+

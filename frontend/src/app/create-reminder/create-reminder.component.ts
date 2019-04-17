@@ -25,31 +25,31 @@ export class CreateReminderComponent  {
 
   openedDate: Date = new Date();
   createReminderForm = new FormGroup({
-    name: new FormControl('', [
+    newReminderName: new FormControl('', [
       Validators.required,
       Validators.maxLength(32)
     ]),
-    description: new FormControl('', [
+    newReminderDescription: new FormControl('', [
       Validators.required,
       Validators.maxLength(32767)
     ]),
-    dueDate: new FormControl({ month: this.openedDate.getMonth() + 1, day: this.openedDate.getDate(), year: this.openedDate.getFullYear() }, [
+    newReminderDueDate: new FormControl({ month: this.openedDate.getMonth() + 1, day: this.openedDate.getDate(), year: this.openedDate.getFullYear() }, [
       Validators.required,
       Validators.maxLength(16)
     ]),
-    time: new FormControl({ hour: this.openedDate.getHours(), minute: this.openedDate.getMinutes(), second: 0 }, Validators.maxLength(16)),
-    isRepeating: new FormControl(false),
-    mustBeNear: new FormControl(false),
-    repeatUnit: new FormControl(this.repeatingFrequencies[0].value),
-    repeatConst: new FormControl(1)
+    newReminderTime: new FormControl({ hour: this.openedDate.getHours(), minute: this.openedDate.getMinutes(), second: 0 }, Validators.maxLength(16)),
+    newReminderisRepeating: new FormControl(false),
+    newReminderMustBeNear: new FormControl(false),
+    newReminderRepeatUnit: new FormControl(this.repeatingFrequencies[0].value),
+    newReminderRepeatConst: new FormControl(1)
   });
 
   private _success = new Subject<string>();
-  success: boolean;
-  message: string;
+  madeReminder: boolean;
+  createResponseMessage: string;
 
-  latitude: Number;
-  longitude: Number;
+  newReminderLatitude: Number;
+  newReminderLongitude: Number;
   userLatitude: Number;
   userLongitude: Number;
 
@@ -65,16 +65,16 @@ export class CreateReminderComponent  {
         }
       });
       if (this.authService.lastLocation == null) {
-        this.latitude = 28.6024274;
-        this.longitude = -81.2000599;
+        this.newReminderLatitude = 28.6024274;
+        this.newReminderLongitude = -81.2000599;
       } else {
-        this.latitude = this.authService.lastLocation.coords.latitude;
-        this.longitude = this.authService.lastLocation.coords.longitude;
+        this.newReminderLatitude = this.authService.lastLocation.coords.latitude;
+        this.newReminderLongitude = this.authService.lastLocation.coords.longitude;
       }
-      this._success.subscribe((msg) => { this.message = msg });
+      this._success.subscribe((msg) => { this.createResponseMessage = msg });
       this._success.pipe(
         debounceTime(5000)
-      ).subscribe(() => this.success = null);
+      ).subscribe(() => this.madeReminder = null);
      }
   getDateFromPicker(date: any, time?: any): Date {
     if (time.hour != null)
@@ -84,34 +84,34 @@ export class CreateReminderComponent  {
   }
 
   mapClicked($event: MouseEvent) {
-    this.latitude = +$event.coords.lat;
-    this.longitude = +$event.coords.lng;
+    this.newReminderLatitude = +$event.coords.lat;
+    this.newReminderLongitude = +$event.coords.lng;
   }
 
-  onSubmit() {
+  createReminder() {
     const reminderInformation: CreateReminderInformation = {
       userID: this.authService.getUser().id,
       // Reminders are private only, pls confirm
       isPublic: false,
       isComplete: false,
-      name: this.createReminderForm.get('name').value,
-      description: this.createReminderForm.get('description').value,
-      dueDate: this.getDateFromPicker(this.createReminderForm.get('dueDate').value,
-        this.createReminderForm.get('time').value),
-      repeats: this.createReminderForm.get('isRepeating').value,
-      repeatUnit: this.createReminderForm.get('repeatUnit').value,
-      mustBeNear: this.createReminderForm.get('mustBeNear').value,
-      repeatConst: this.createReminderForm.get('repeatConst').value,
-      lat: +this.latitude,
-      lng: +this.longitude,
+      name: this.createReminderForm.get('newReminderName').value,
+      description: this.createReminderForm.get('newReminderDescription').value,
+      dueDate: this.getDateFromPicker(this.createReminderForm.get('newReminderDueDate').value,
+        this.createReminderForm.get('newReminderTime').value),
+      repeats: this.createReminderForm.get('newReminderisRepeating').value,
+      repeatUnit: this.createReminderForm.get('newReminderRepeatUnit').value,
+      mustBeNear: this.createReminderForm.get('newReminderMustBeNear').value,
+      repeatConst: this.createReminderForm.get('newReminderRepeatConst').value,
+      lat: +this.newReminderLatitude,
+      lng: +this.newReminderLongitude,
     };
 
     this.eventService.addReminder(this.authService.getToken(), reminderInformation).subscribe((res: CreateReminderResponse) => {
-      this.success = res.success;
+      this.madeReminder = res.success;
       this._success.next(res.msg);
 
-      if(this.success) {
-        this.activeModal.close(this.success);
+      if(this.madeReminder) {
+        this.activeModal.close(this.madeReminder);
       }
     });
   }

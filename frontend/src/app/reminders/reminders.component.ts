@@ -77,6 +77,17 @@ export class RemindersComponent implements OnInit {
       return 1;
   }
 
+  getImage(index: number): string {
+    const tableClass = this.getClass(index);
+    if (tableClass == "table-secondary") {
+      return "../../assets/images/today.png";
+    } else if (tableClass == "table-warning") {
+      return "../../assets/images/overdue.png";
+    } else if (tableClass == "table-default") {
+      return "../../assets/images/event.png";
+    }
+  }
+
   getClass(index: number): string {
     const reminder: Reminder = this.reminders[index];
     const then = new Date(reminder.dueDate)
@@ -96,6 +107,6 @@ export class RemindersComponent implements OnInit {
 
   createReminder() {
     const modalRef = this.modalService.open(CreateReminderComponent);
-    modalRef.result.then(() => this.refreshData());
+    modalRef.result.then(() => this.refreshData(), () => { });
   }
 }

@@ -25,6 +25,7 @@
         <agm-marker [iconUrl]="'../../assets/images/new.png'" [latitude]="newReminderLatitude" [longitude]="newReminderLongitude">
         </agm-marker>
       </agm-map>
+      <br>
       <div class="form-group">
         <h4>Name</h4>
         <input class="form-control" placeholder="Name" type="text" formControlName="newReminderName" required maxlength="32">
@@ -35,7 +36,7 @@
           rows="3"></textarea>
       </div> <!-- form-group// -->
       <div class="form-group">
-        <h4>Due Date</h4>
+        <h4>Due Date and Time</h4>
         <div class="row">
           <ngb-timepicker class="col-sm" formControlName="newReminderTime" [meridian]="true" [size]="small"></ngb-timepicker>
           <div class="col-sm d-flex align-items-center">
@@ -46,14 +47,13 @@
       </div> <!-- form-group-->
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" formControlName="newReminderMustBeNear" id="newReminderCheckBoxNear">
-        <label class="custom-control-label" for="newReminderCheckBoxNear">Do you have to be near to complete?</label>
+        <label class="custom-control-label" for="newReminderCheckBoxNear">Enforce geolocation proximity</label>
       </div>
-      <br />
       <div class="form-group">
         <div class="custom-control custom-checkbox">
           <!-- Check this out, looks prettier, but I preserved the code below in case this doesn't work.  -- Jorge -->
           <input type="checkbox" class="custom-control-input" formControlName="newReminderisRepeating" id="newReminderCheckBoxRepeating">
-          <label class="custom-control-label" for="newReminderCheckBoxRepeating">Does it repeat?</label>
+          <label class="custom-control-label" for="newReminderCheckBoxRepeating">Repeats</label>
         </div>
 
         <div id="newReminderCollapsedRepeating" [ngbCollapse]="!(createReminderForm.get('newReminderisRepeating').value)">

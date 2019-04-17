@@ -3,7 +3,7 @@
     <span class="ml-3" *ngIf="reminderService.loading$ | async">Loading...</span>
 </div> -->
 <!-- sets up a row of two columns -->
-<div class='row' style="max-width:100%;margin-top:1%;">
+<div class='row' style="max-width:99%;margin-top:1%;margin-left:1%">
     <div id="main" class="column">
         <div id="top" class="row">
             <div id="title" class="column" style="width:80%;">
@@ -19,14 +19,16 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th scope="col" sortable="done" style="width:5%;">Done</th>
                     <th scope="col" sortable="name" style="width:20%;">Name</th>
                     <th scope="col" sortable="description" style="width:50%;">Description</th>
-                    <th scope="col" sortable="dueDate" style="width:30%;">Due</th>
+                    <th scope="col" sortable="dueDate" style="width:25%;">Due Date and Time</th>
                 </tr>
             </thead>
             <tbody>
                 <tr style="color:white" *ngFor="let reminder of reminders; let i = index" (click)="onClickedEvent(i)"
                     [class.active]="i == selectedRow" [className]="getClass(i)">
+                    <td>{{reminder.isComplete}}</td>
                     <td>{{reminder.name}}</td>
                     <td>{{reminder.description}}</td>
                     <td>{{reminder.dueDate | date: 'medium'}}</td>

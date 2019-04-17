@@ -41,7 +41,7 @@ export class EventsComponent implements OnInit {
 
     this.reminderWatcher = this.eventService.onEventListLoad.subscribe({
       next: (reminders: Reminder[]) => {
-        this.reminders = reminders;
+        this.reminders = reminders.sort((a,b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());;
       }
     });
 
@@ -88,14 +88,30 @@ export class EventsComponent implements OnInit {
 
   getClass(index: number): string {
     const reminder: Reminder = this.reminders[index];
-    const then = new Date(reminder.dueDate)
+    const then = new Date(reminder.dueDate);
+    var buttonClass: string;
+    var tableClass: string;
+    var retString: string;
+    var distance = this.findDistance(reminder.lat, this.userLatitude.valueOf(), reminder.lng, this.userLongitude.valueOf());
+
     if (this.dateCompare(then, this.today) == 0) {
-      return "table-secondary";
-    } else if (this.dateCompare(then, this.today) < 0) {
-      return "table-warning";
-    } else if (this.dateCompare(then, this.today) > 0) {
-      return "table-default"
+      if (distance > 0.001 && reminder.mustBeNear == true) {
+        tableClass = "table-secondary";
+      } else {
+        tableClass = "table-primary";
+      }
     }
+
+    if (this.dateCompare(then, this.today) > 0) {
+      tableClass = "table-default";
+    }
+
+    if (this.dateCompare(then, this.today) < 0) {
+     tableClass = "table-warning";
+    }
+
+    retString = tableClass;
+    return retString;
   }
 
   refreshData() {
